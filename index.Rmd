@@ -1,0 +1,91 @@
+--- 
+title: "Прикладной анализ данных"
+author: "Елена Рыбина"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Занятие по прикладному анализу данных.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+```{r, eval=TRUE,echo=FALSE}
+library(tidyverse)
+library(viridis)
+```
+# Чек-лист для работы с данными
+
+1. Сформулированы теоретические гипотезы
+2. Сформулированы эмпирические гипотезы
+3. Есть понимание, как будут выглядеть / выглядят собранные данные
+4. Есть понимание, что данных достаточно для проверки поставленной гипотезы
+5. Исходя из гипотезы и того, как собраны и какие данные, выбран статистический метод проверки экспериментальной гипотезы
+6. Исходя из статистического метода, есть понимание о статистической гипотезе *(хорошо, если есть)*
+7. Выбрана среда для анализа данных и пакет для этого метода и конкретная функция
+8. Данные приведены в вид, к которому можно применить выбранный статистический метод
+9. Визуализация самих данных для лучшего их понимания
+10. Проведен расчет выбранного стат метода
+11. Вид полученных результатов понятен для интерпретации, и резульатты согласуются с представлением о том, как они должны выглядеть
+12. Результаты проинтепретированы и стедлан вывод относительно изначальной гипотезы
+13. Визуализированы результаты, так, чтобы их было легче правильно проинтерпретировать
+
+
+## Сформулированы теоретические гипотезы 
+
+Возьмем датасет с kaggle <https://www.kaggle.com/datasets/uciml/student-alcohol-consumption>
+```{r, eval=TRUE}
+studens1 <- read_csv("student-mat.csv")
+View(studens1)
+```
+
+```{r, eval=TRUE}
+studens1 %>% 
+  rename_with(., ~ paste0(., "_mat"), .cols = c(absences, paid, G1, G2, G3)) -> studens1
+```
+
+```{r, eval=TRUE}
+studens2 <- read_csv("student-por.csv")
+studens2 %>% 
+  rename_with(., ~ paste0(., "_por"), .cols = c(absences, paid, G1, G2, G3)) -> studens2
+View(studens2)
+```
+
+
+Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must*
+The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
+
+
+## Render book
+
+You can render the HTML version of this example book without changing anything:
+
+1. Find the **Build** pane in the RStudio IDE, and
+
+1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
+
+Or build the book from the R console:
+
+```{r, eval=FALSE}
+bookdown::render_book()
+```
+
+To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+
+## Preview book
+
+As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
+
+```{r eval=FALSE}
+bookdown::serve_book()
+```
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
