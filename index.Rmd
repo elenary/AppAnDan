@@ -58,34 +58,35 @@ Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (a
 The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
 
 
-## Render book
+## Сформулированы эмпирические гипотезы
 
-You can render the HTML version of this example book without changing anything:
+Объединенные таблички
 
-1. Find the **Build** pane in the RStudio IDE, and
 
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
+```{r, eval=TRUE}
 
-Or build the book from the R console:
-
-```{r, eval=FALSE}
-bookdown::render_book()
+studens1 %>% 
+  full_join(studens2, by = c("school","sex","age","address","famsize","Pstatus","Medu","Fedu",
+                             "Mjob","Fjob","reason", "guardian", "traveltime","studytime", "failures", "schoolsup", "famsup",
+                             "activities", "nursery", "higher", "internet", "romantic", "famrel", "freetime", "goout", 
+                             "Dalc", "Walc", "health")) -> students
 ```
 
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-```{r eval=FALSE}
-bookdown::serve_book()
+```{r, eval=TRUE}
+#kable(studens)
 ```
 
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+## Есть понимание, как будут выглядеть / выглядят собранные данные
+
+## Исходя из гипотезы и того, как собраны и какие данные, выбран статистический метод проверки экспериментальной гипотезы
+## Исходя из статистического метода, есть понимание о статистической гипотезе *(хорошо, если есть)*
+## Выбрана среда для анализа данных и пакет для этого метода и конкретная функция
+## Данные приведены в вид, к которому можно применить выбранный статистический метод
+## Визуализация самих данных для лучшего их понимания
+## Проведен расчет выбранного стат метода
+## Вид полученных результатов понятен для интерпретации, и резульатты согласуются с представлением о том, как они должны выглядеть
+## Результаты проинтепретированы и стедлан вывод относительно изначальной гипотезы
+## Визуализированы результаты, так, чтобы их было легче правильно проинтерпретировать
+
+<!--chapter:end:index.Rmd-->

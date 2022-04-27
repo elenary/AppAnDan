@@ -23,7 +23,7 @@
 <meta name="author" content="Елена Рыбина" />
 
 
-<meta name="date" content="2022-04-21" />
+<meta name="date" content="2022-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,8 +139,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="#чек-лист-для-работы-с-данными"><i class="fa fa-check"></i><b>1</b> Чек-лист для работы с данными</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="#сформулированы-теоретические-гипотезы"><i class="fa fa-check"></i><b>1.1</b> Сформулированы теоретические гипотезы</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="#сформулированы-эмпирические-гипотезы"><i class="fa fa-check"></i><b>1.2</b> Сформулированы эмпирические гипотезы</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="#есть-понимание-как-будут-выглядеть-выглядят-собранные-данные"><i class="fa fa-check"></i><b>1.3</b> Есть понимание, как будут выглядеть / выглядят собранные данные</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="#исходя-из-гипотезы-и-того-как-собраны-и-какие-данные-выбран-статистический-метод-проверки-экспериментальной-гипотезы"><i class="fa fa-check"></i><b>1.4</b> Исходя из гипотезы и того, как собраны и какие данные, выбран статистический метод проверки экспериментальной гипотезы</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="#исходя-из-статистического-метода-есть-понимание-о-статистической-гипотезе-хорошо-если-есть"><i class="fa fa-check"></i><b>1.5</b> Исходя из статистического метода, есть понимание о статистической гипотезе <em>(хорошо, если есть)</em></a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="#выбрана-среда-для-анализа-данных-и-пакет-для-этого-метода-и-конкретная-функция"><i class="fa fa-check"></i><b>1.6</b> Выбрана среда для анализа данных и пакет для этого метода и конкретная функция</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="#данные-приведены-в-вид-к-которому-можно-применить-выбранный-статистический-метод"><i class="fa fa-check"></i><b>1.7</b> Данные приведены в вид, к которому можно применить выбранный статистический метод</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="#визуализация-самих-данных-для-лучшего-их-понимания"><i class="fa fa-check"></i><b>1.8</b> Визуализация самих данных для лучшего их понимания</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="#проведен-расчет-выбранного-стат-метода"><i class="fa fa-check"></i><b>1.9</b> Проведен расчет выбранного стат метода</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="#вид-полученных-результатов-понятен-для-интерпретации-и-резульатты-согласуются-с-представлением-о-том-как-они-должны-выглядеть"><i class="fa fa-check"></i><b>1.10</b> Вид полученных результатов понятен для интерпретации, и резульатты согласуются с представлением о том, как они должны выглядеть</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="#результаты-проинтепретированы-и-стедлан-вывод-относительно-изначальной-гипотезы"><i class="fa fa-check"></i><b>1.11</b> Результаты проинтепретированы и стедлан вывод относительно изначальной гипотезы</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="#визуализированы-результаты-так-чтобы-их-было-легче-правильно-проинтерпретировать"><i class="fa fa-check"></i><b>1.12</b> Визуализированы результаты, так, чтобы их было легче правильно проинтерпретировать</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -165,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Прикладной анализ данных</h1>
 <p class="author"><em>Елена Рыбина</em></p>
-<p class="date"><em>2022-04-21</em></p>
+<p class="date"><em>2022-04-25</em></p>
 </div>
 <div id="чек-лист-для-работы-с-данными" class="section level1 hasAnchor">
 <h1><span class="header-section-number">Chapter 1</span> Чек-лист для работы с данными<a href="#чек-лист-для-работы-с-данными" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -242,21 +251,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Each <strong>bookdown</strong> chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter <em>must</em>
 The <code>index.Rmd</code> file is required, and is also your first book chapter. It will be the homepage when you render the book.</p>
 </div>
-<div id="render-book" class="section level2 hasAnchor">
-<h2><span class="header-section-number">1.2</span> Render book<a href="#render-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can render the HTML version of this example book without changing anything:</p>
-<ol style="list-style-type: decimal">
-<li><p>Find the <strong>Build</strong> pane in the RStudio IDE, and</p></li>
-<li><p>Click on <strong>Build Book</strong>, then select your output format, or select “All formats” if you’d like to use multiple formats from the same book source files.</p></li>
-</ol>
-<p>Or build the book from the R console:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>bookdown<span class="op">::</span><span class="kw">render_book</span>()</span></code></pre></div>
-<p>To render this example to PDF as a <code>bookdown::pdf_book</code>, you’ll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a>.</p>
+<div id="сформулированы-эмпирические-гипотезы" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.2</span> Сформулированы эмпирические гипотезы<a href="#сформулированы-эмпирические-гипотезы" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Объединенные таблички</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>studens1 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">full_join</span>(studens2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;school&quot;</span>,<span class="st">&quot;sex&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;address&quot;</span>,<span class="st">&quot;famsize&quot;</span>,<span class="st">&quot;Pstatus&quot;</span>,<span class="st">&quot;Medu&quot;</span>,<span class="st">&quot;Fedu&quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>                             <span class="st">&quot;Mjob&quot;</span>,<span class="st">&quot;Fjob&quot;</span>,<span class="st">&quot;reason&quot;</span>, <span class="st">&quot;guardian&quot;</span>, <span class="st">&quot;traveltime&quot;</span>,<span class="st">&quot;studytime&quot;</span>, <span class="st">&quot;failures&quot;</span>, <span class="st">&quot;schoolsup&quot;</span>, <span class="st">&quot;famsup&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                             <span class="st">&quot;activities&quot;</span>, <span class="st">&quot;nursery&quot;</span>, <span class="st">&quot;higher&quot;</span>, <span class="st">&quot;internet&quot;</span>, <span class="st">&quot;romantic&quot;</span>, <span class="st">&quot;famrel&quot;</span>, <span class="st">&quot;freetime&quot;</span>, <span class="st">&quot;goout&quot;</span>, </span>
+<span id="cb12-5"><a href="#cb12-5"></a>                             <span class="st">&quot;Dalc&quot;</span>, <span class="st">&quot;Walc&quot;</span>, <span class="st">&quot;health&quot;</span>)) -&gt;<span class="st"> </span>students</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#kable(studens)</span></span></code></pre></div>
 </div>
-<div id="preview-book" class="section level2 hasAnchor">
-<h2><span class="header-section-number">1.3</span> Preview book<a href="#preview-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in “Preview book”, or from the R console:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>bookdown<span class="op">::</span><span class="kw">serve_book</span>()</span></code></pre></div>
+<div id="есть-понимание-как-будут-выглядеть-выглядят-собранные-данные" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.3</span> Есть понимание, как будут выглядеть / выглядят собранные данные<a href="#есть-понимание-как-будут-выглядеть-выглядят-собранные-данные" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="исходя-из-гипотезы-и-того-как-собраны-и-какие-данные-выбран-статистический-метод-проверки-экспериментальной-гипотезы" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.4</span> Исходя из гипотезы и того, как собраны и какие данные, выбран статистический метод проверки экспериментальной гипотезы<a href="#исходя-из-гипотезы-и-того-как-собраны-и-какие-данные-выбран-статистический-метод-проверки-экспериментальной-гипотезы" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="исходя-из-статистического-метода-есть-понимание-о-статистической-гипотезе-хорошо-если-есть" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.5</span> Исходя из статистического метода, есть понимание о статистической гипотезе <em>(хорошо, если есть)</em><a href="#исходя-из-статистического-метода-есть-понимание-о-статистической-гипотезе-хорошо-если-есть" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="выбрана-среда-для-анализа-данных-и-пакет-для-этого-метода-и-конкретная-функция" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.6</span> Выбрана среда для анализа данных и пакет для этого метода и конкретная функция<a href="#выбрана-среда-для-анализа-данных-и-пакет-для-этого-метода-и-конкретная-функция" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="данные-приведены-в-вид-к-которому-можно-применить-выбранный-статистический-метод" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.7</span> Данные приведены в вид, к которому можно применить выбранный статистический метод<a href="#данные-приведены-в-вид-к-которому-можно-применить-выбранный-статистический-метод" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="визуализация-самих-данных-для-лучшего-их-понимания" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.8</span> Визуализация самих данных для лучшего их понимания<a href="#визуализация-самих-данных-для-лучшего-их-понимания" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="проведен-расчет-выбранного-стат-метода" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.9</span> Проведен расчет выбранного стат метода<a href="#проведен-расчет-выбранного-стат-метода" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="вид-полученных-результатов-понятен-для-интерпретации-и-резульатты-согласуются-с-представлением-о-том-как-они-должны-выглядеть" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.10</span> Вид полученных результатов понятен для интерпретации, и резульатты согласуются с представлением о том, как они должны выглядеть<a href="#вид-полученных-результатов-понятен-для-интерпретации-и-резульатты-согласуются-с-представлением-о-том-как-они-должны-выглядеть" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="результаты-проинтепретированы-и-стедлан-вывод-относительно-изначальной-гипотезы" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.11</span> Результаты проинтепретированы и стедлан вывод относительно изначальной гипотезы<a href="#результаты-проинтепретированы-и-стедлан-вывод-относительно-изначальной-гипотезы" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="визуализированы-результаты-так-чтобы-их-было-легче-правильно-проинтерпретировать" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.12</span> Визуализированы результаты, так, чтобы их было легче правильно проинтерпретировать<a href="#визуализированы-результаты-так-чтобы-их-было-легче-правильно-проинтерпретировать" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
 
 </div>
 </div>
