@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Прикладной анализ данных</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="#чек-лист-для-работы-с-данными"><i class="fa fa-check"></i><b>1</b> Чек-лист для работы с данными</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="#чек-лист-работы-с-данными"><i class="fa fa-check"></i><b>1</b> Чек-лист работы с данными</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="#сформулированы-теоретические-гипотезы"><i class="fa fa-check"></i><b>1.1</b> Сформулированы теоретические гипотезы</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="#сформулированы-эмпирические-гипотезы"><i class="fa fa-check"></i><b>1.2</b> Сформулированы эмпирические гипотезы</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="#есть-понимание-как-будут-выглядеть-выглядят-собранные-данные"><i class="fa fa-check"></i><b>1.3</b> Есть понимание, как будут выглядеть / выглядят собранные данные</a></li>
@@ -176,90 +176,944 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Елена Рыбина</em></p>
 <p class="date"><em>2022-04-27</em></p>
 </div>
-<div id="чек-лист-для-работы-с-данными" class="section level1 hasAnchor">
-<h1><span class="header-section-number"> 1</span> Чек-лист для работы с данными<a href="#чек-лист-для-работы-с-данными" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="чек-лист-работы-с-данными" class="section level1 hasAnchor">
+<h1><span class="header-section-number"> 1</span> Чек-лист работы с данными<a href="#чек-лист-работы-с-данными" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Рассмотрим, как должен выглядеть чек-лист работы с данными для проверки себя, если бы эти экспериментальные данные мы собирали бы сами?</p>
 <ol style="list-style-type: decimal">
-<li>Сформулированы теоретические гипотезы</li>
-<li>Сформулированы эмпирические гипотезы</li>
-<li>Есть понимание, как будут выглядеть / выглядят собранные данные</li>
-<li>Есть понимание, что данных достаточно для проверки поставленной гипотезы</li>
-<li>Исходя из гипотезы и того, как собраны и какие данные, выбран статистический метод проверки экспериментальной гипотезы</li>
-<li>Исходя из статистического метода, есть понимание о статистической гипотезе <em>(хорошо, если есть)</em></li>
-<li>Выбрана среда для анализа данных и пакет для этого метода и конкретная функция</li>
-<li>Данные приведены в вид, к которому можно применить выбранный статистический метод</li>
-<li>Визуализация самих данных для лучшего их понимания</li>
-<li>Проведен расчет выбранного стат метода</li>
-<li>Вид полученных результатов понятен для интерпретации, и резульатты согласуются с представлением о том, как они должны выглядеть</li>
-<li>Результаты проинтепретированы и стедлан вывод относительно изначальной гипотезы</li>
-<li>Визуализированы результаты, так, чтобы их было легче правильно проинтерпретировать</li>
+<li>Сформулированы теоретические гипотезы.</li>
+<li>Сформулированы экспериментальные гипотезы.</li>
+<li>Есть понимание, как будут выглядеть / выглядят собранные данные.</li>
+<li>Есть понимание, что данных достаточно для проверки поставленной гипотезы.</li>
+<li>Исходя из гипотезы и того, как собраны и какие это данные, выбран статистический метод проверки экспериментальной гипотезы.</li>
+<li>Исходя из статистического критерия, есть понимание о статистической гипотезе <em>(хорошо, если есть – это уже про H0 и H1)</em></li>
+<li>Выбрана среда для анализа данных конкретная функция под выбранный статистический критерий (или несколько функций) <em>(если нужно - установлен пакет для выбранных функций)</em>.</li>
+<li>Данные предобработаны и приведены в вид, к которому можно применить выбранный статистический критерий и выполнить выбранную функцию.</li>
+<li>Предобработанные, но еще не проанализрованные данные визуализированы для лучшего их понимания <em>(этот пункт может пригодиться уже на этапе 3)</em>.</li>
+<li>Проведен расчет выбранного статистического критерия с помощью выбранной функции.</li>
+<li>Вид полученных результатов понятен для интерпретации, и резульатты согласуются с представлением о том, как они должны выглядеть.</li>
+<li>Результаты проинтепретированы и сделан вывод относительно статистической и экспериментальной гипотез.</li>
+<li>Результаты визуализированы, так, чтобы их было легче правильно воспринять.</li>
 </ol>
+<p>Теперь пройдемся подробнее по некоторым из этих пунктов.</p>
+<p>В качестве примера возьмем датасет с kaggle <a href="https://www.kaggle.com/datasets/uciml/student-alcohol-consumption" class="uri">https://www.kaggle.com/datasets/uciml/student-alcohol-consumption</a>.
+Это – данные из двух португальских школ (скорее колледжей) с подробной социо-демографической информации о студентах, включая ту, как они учатся по математике и португальскому языку и как часто пьют алкоголь. Этот датасет я взяла, так как он содержит переменные разного типа данных в разных шкалах (и шкала отношений, например, возраст, и порядковая шкала, например, рейтинггования образования мамы или папы или поддержка в семье).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>studens_mat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;student-mat.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_character(),
+##   age = col_double(),
+##   Medu = col_double(),
+##   Fedu = col_double(),
+##   traveltime = col_double(),
+##   studytime = col_double(),
+##   failures = col_double(),
+##   famrel = col_double(),
+##   freetime = col_double(),
+##   goout = col_double(),
+##   Dalc = col_double(),
+##   Walc = col_double(),
+##   health = col_double(),
+##   absences = col_double(),
+##   G1 = col_double(),
+##   G2 = col_double(),
+##   G3 = col_double()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>studens_mat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">rename_with</span>(., <span class="op">~</span><span class="st"> </span><span class="kw">paste0</span>(., <span class="st">&quot;_mat&quot;</span>), <span class="dt">.cols =</span> <span class="kw">c</span>(absences, paid, G1, G2, G3)) -&gt;<span class="st"> </span>studens_mat <span class="co">#переименовываю колонки для упрощения понимания, какие относятся к математикие</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>knitr<span class="op">::</span><span class="kw">kable</span>(studens_mat[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]) <span class="co">#визуализирую табличку для этой книжки</span></span></code></pre></div>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="1%" />
+<col width="1%" />
+<col width="3%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="2%" />
+<col width="5%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">school</th>
+<th align="left">sex</th>
+<th align="right">age</th>
+<th align="left">address</th>
+<th align="left">famsize</th>
+<th align="left">Pstatus</th>
+<th align="right">Medu</th>
+<th align="right">Fedu</th>
+<th align="left">Mjob</th>
+<th align="left">Fjob</th>
+<th align="left">reason</th>
+<th align="left">guardian</th>
+<th align="right">traveltime</th>
+<th align="right">studytime</th>
+<th align="right">failures</th>
+<th align="left">schoolsup</th>
+<th align="left">famsup</th>
+<th align="left">paid_mat</th>
+<th align="left">activities</th>
+<th align="left">nursery</th>
+<th align="left">higher</th>
+<th align="left">internet</th>
+<th align="left">romantic</th>
+<th align="right">famrel</th>
+<th align="right">freetime</th>
+<th align="right">goout</th>
+<th align="right">Dalc</th>
+<th align="right">Walc</th>
+<th align="right">health</th>
+<th align="right">absences_mat</th>
+<th align="right">G1_mat</th>
+<th align="right">G2_mat</th>
+<th align="right">G3_mat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">18</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">at_home</td>
+<td align="left">teacher</td>
+<td align="left">course</td>
+<td align="left">mother</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">17</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">at_home</td>
+<td align="left">other</td>
+<td align="left">course</td>
+<td align="left">father</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">at_home</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">10</td>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">health</td>
+<td align="left">services</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">14</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">father</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">services</td>
+<td align="left">other</td>
+<td align="left">reputation</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">17</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">other</td>
+<td align="left">teacher</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="left">services</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">16</td>
+<td align="right">18</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">14</td>
+<td align="right">15</td>
+<td align="right">15</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>studens_por &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;student-por.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_character(),
+##   age = col_double(),
+##   Medu = col_double(),
+##   Fedu = col_double(),
+##   traveltime = col_double(),
+##   studytime = col_double(),
+##   failures = col_double(),
+##   famrel = col_double(),
+##   freetime = col_double(),
+##   goout = col_double(),
+##   Dalc = col_double(),
+##   Walc = col_double(),
+##   health = col_double(),
+##   absences = col_double(),
+##   G1 = col_double(),
+##   G2 = col_double(),
+##   G3 = col_double()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>studens_por <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">rename_with</span>(., <span class="op">~</span><span class="st"> </span><span class="kw">paste0</span>(., <span class="st">&quot;_por&quot;</span>), <span class="dt">.cols =</span> <span class="kw">c</span>(absences, paid, G1, G2, G3)) -&gt;<span class="st"> </span>studens_por</span>
+<span id="cb10-3"><a href="#cb10-3"></a>knitr<span class="op">::</span><span class="kw">kable</span>(studens_por[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]) <span class="co">#визуализирую табличку для этой книжки</span></span></code></pre></div>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="1%" />
+<col width="1%" />
+<col width="3%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="2%" />
+<col width="5%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">school</th>
+<th align="left">sex</th>
+<th align="right">age</th>
+<th align="left">address</th>
+<th align="left">famsize</th>
+<th align="left">Pstatus</th>
+<th align="right">Medu</th>
+<th align="right">Fedu</th>
+<th align="left">Mjob</th>
+<th align="left">Fjob</th>
+<th align="left">reason</th>
+<th align="left">guardian</th>
+<th align="right">traveltime</th>
+<th align="right">studytime</th>
+<th align="right">failures</th>
+<th align="left">schoolsup</th>
+<th align="left">famsup</th>
+<th align="left">paid_por</th>
+<th align="left">activities</th>
+<th align="left">nursery</th>
+<th align="left">higher</th>
+<th align="left">internet</th>
+<th align="left">romantic</th>
+<th align="right">famrel</th>
+<th align="right">freetime</th>
+<th align="right">goout</th>
+<th align="right">Dalc</th>
+<th align="right">Walc</th>
+<th align="right">health</th>
+<th align="right">absences_por</th>
+<th align="right">G1_por</th>
+<th align="right">G2_por</th>
+<th align="right">G3_por</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">18</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">at_home</td>
+<td align="left">teacher</td>
+<td align="left">course</td>
+<td align="left">mother</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">17</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">at_home</td>
+<td align="left">other</td>
+<td align="left">course</td>
+<td align="left">father</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">at_home</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">12</td>
+<td align="right">13</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">health</td>
+<td align="left">services</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">14</td>
+<td align="right">14</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">father</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">13</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">services</td>
+<td align="left">other</td>
+<td align="left">reputation</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">13</td>
+<td align="right">12</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">17</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">other</td>
+<td align="left">teacher</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">13</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="left">services</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">15</td>
+<td align="right">16</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">13</td>
+</tr>
+</tbody>
+</table>
 <div id="сформулированы-теоретические-гипотезы" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.1</span> Сформулированы теоретические гипотезы<a href="#сформулированы-теоретические-гипотезы" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Возьмем датасет с kaggle <a href="https://www.kaggle.com/datasets/uciml/student-alcohol-consumption" class="uri">https://www.kaggle.com/datasets/uciml/student-alcohol-consumption</a></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>studens1 &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;student-mat.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   .default = col_character(),
-##   age = col_double(),
-##   Medu = col_double(),
-##   Fedu = col_double(),
-##   traveltime = col_double(),
-##   studytime = col_double(),
-##   failures = col_double(),
-##   famrel = col_double(),
-##   freetime = col_double(),
-##   goout = col_double(),
-##   Dalc = col_double(),
-##   Walc = col_double(),
-##   health = col_double(),
-##   absences = col_double(),
-##   G1 = col_double(),
-##   G2 = col_double(),
-##   G3 = col_double()
-## )
-## ℹ Use `spec()` for the full column specifications.</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">View</span>(studens1)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>studens1 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">rename_with</span>(., <span class="op">~</span><span class="st"> </span><span class="kw">paste0</span>(., <span class="st">&quot;_mat&quot;</span>), <span class="dt">.cols =</span> <span class="kw">c</span>(absences, paid, G1, G2, G3)) -&gt;<span class="st"> </span>studens1</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>studens2 &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;student-por.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   .default = col_character(),
-##   age = col_double(),
-##   Medu = col_double(),
-##   Fedu = col_double(),
-##   traveltime = col_double(),
-##   studytime = col_double(),
-##   failures = col_double(),
-##   famrel = col_double(),
-##   freetime = col_double(),
-##   goout = col_double(),
-##   Dalc = col_double(),
-##   Walc = col_double(),
-##   health = col_double(),
-##   absences = col_double(),
-##   G1 = col_double(),
-##   G2 = col_double(),
-##   G3 = col_double()
-## )
-## ℹ Use `spec()` for the full column specifications.</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>studens2 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">rename_with</span>(., <span class="op">~</span><span class="st"> </span><span class="kw">paste0</span>(., <span class="st">&quot;_por&quot;</span>), <span class="dt">.cols =</span> <span class="kw">c</span>(absences, paid, G1, G2, G3)) -&gt;<span class="st"> </span>studens2</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">View</span>(studens2)</span></code></pre></div>
-<p>Each <strong>bookdown</strong> chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter <em>must</em>
-The <code>index.Rmd</code> file is required, and is also your first book chapter. It will be the homepage when you render the book.</p>
+<p><em><Здесь на парах мы придумывали гипотезы></em></p>
+<p>Возьмем первую придуманную гипотезу: в датасете есть студенты возрастов от 15 до 22 двух лет. Возможно, <code>те, кто младше, на вопросы об употреблении алкоголя будут выбирать варианты ответов, ассоциированные с как можно более редким употреблением</code>, так как являются несовершеннолетними и боятся признаться.</p>
+<p>Эта гипотеза хороша тем, что она имеет понятное теоретическое обоснование, она проверяема на наших данных, и данные подходят для того, чтобы ее проверить</p>
+<p>Вторая гипотеза: <code>те, кто оценивает отношения с родителями как менее поддерживающие, чаще употребляют алкоголь</code>. Эта гипотеза так же понятна, имеет теоретическое обосноование, проверяема в исследовании, и наши данные подходят для ее проверки.</p>
+<p><strong>bookdown</strong>
+<em>must</em>
+<code>index.Rmd</code></p>
 </div>
 <div id="сформулированы-эмпирические-гипотезы" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.2</span> Сформулированы эмпирические гипотезы<a href="#сформулированы-эмпирические-гипотезы" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Объединенные таблички</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>studens1 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">full_join</span>(studens2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;school&quot;</span>,<span class="st">&quot;sex&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;address&quot;</span>,<span class="st">&quot;famsize&quot;</span>,<span class="st">&quot;Pstatus&quot;</span>,<span class="st">&quot;Medu&quot;</span>,<span class="st">&quot;Fedu&quot;</span>,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>                             <span class="st">&quot;Mjob&quot;</span>,<span class="st">&quot;Fjob&quot;</span>,<span class="st">&quot;reason&quot;</span>, <span class="st">&quot;guardian&quot;</span>, <span class="st">&quot;traveltime&quot;</span>,<span class="st">&quot;studytime&quot;</span>, <span class="st">&quot;failures&quot;</span>, <span class="st">&quot;schoolsup&quot;</span>, <span class="st">&quot;famsup&quot;</span>,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>                             <span class="st">&quot;activities&quot;</span>, <span class="st">&quot;nursery&quot;</span>, <span class="st">&quot;higher&quot;</span>, <span class="st">&quot;internet&quot;</span>, <span class="st">&quot;romantic&quot;</span>, <span class="st">&quot;famrel&quot;</span>, <span class="st">&quot;freetime&quot;</span>, <span class="st">&quot;goout&quot;</span>, </span>
-<span id="cb12-5"><a href="#cb12-5"></a>                             <span class="st">&quot;Dalc&quot;</span>, <span class="st">&quot;Walc&quot;</span>, <span class="st">&quot;health&quot;</span>)) -&gt;<span class="st"> </span>students</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#kable(studens)</span></span></code></pre></div>
 </div>
 <div id="есть-понимание-как-будут-выглядеть-выглядят-собранные-данные" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.3</span> Есть понимание, как будут выглядеть / выглядят собранные данные<a href="#есть-понимание-как-будут-выглядеть-выглядят-собранные-данные" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -275,6 +1129,514 @@ The <code>index.Rmd</code> file is required, and is also your first book chapter
 </div>
 <div id="данные-приведены-в-вид-к-которому-можно-применить-выбранный-статистический-метод" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.7</span> Данные приведены в вид, к которому можно применить выбранный статистический метод<a href="#данные-приведены-в-вид-к-которому-можно-применить-выбранный-статистический-метод" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>studens_mat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">full_join</span>(studens_por, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;school&quot;</span>,<span class="st">&quot;sex&quot;</span>,<span class="st">&quot;age&quot;</span>,<span class="st">&quot;address&quot;</span>,<span class="st">&quot;famsize&quot;</span>,<span class="st">&quot;Pstatus&quot;</span>,<span class="st">&quot;Medu&quot;</span>,<span class="st">&quot;Fedu&quot;</span>,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>                             <span class="st">&quot;Mjob&quot;</span>,<span class="st">&quot;Fjob&quot;</span>,<span class="st">&quot;reason&quot;</span>, <span class="st">&quot;guardian&quot;</span>, <span class="st">&quot;traveltime&quot;</span>,<span class="st">&quot;studytime&quot;</span>, <span class="st">&quot;failures&quot;</span>, <span class="st">&quot;schoolsup&quot;</span>, <span class="st">&quot;famsup&quot;</span>,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>                             <span class="st">&quot;activities&quot;</span>, <span class="st">&quot;nursery&quot;</span>, <span class="st">&quot;higher&quot;</span>, <span class="st">&quot;internet&quot;</span>, <span class="st">&quot;romantic&quot;</span>, <span class="st">&quot;famrel&quot;</span>, <span class="st">&quot;freetime&quot;</span>, <span class="st">&quot;goout&quot;</span>, </span>
+<span id="cb11-5"><a href="#cb11-5"></a>                             <span class="st">&quot;Dalc&quot;</span>, <span class="st">&quot;Walc&quot;</span>, <span class="st">&quot;health&quot;</span>)) -&gt;<span class="st"> </span>students</span>
+<span id="cb11-6"><a href="#cb11-6"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;student&quot;</span> =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;id&quot;</span>, <span class="kw">row_number</span>()), <span class="dt">.before =</span> <span class="st">&quot;school&quot;</span>) -&gt;<span class="st"> </span>students <span class="co">#добавляю колонку с айдишником и перезаписываю результат в датасет</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="st">  </span><span class="kw">drop_na</span>() -&gt;<span class="st"> </span>students <span class="co">#пропускаю строки с NA и перезаписываю результат в датасет</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>knitr<span class="op">::</span><span class="kw">kable</span>(students[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]) </span></code></pre></div>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="2%" />
+<col width="2%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="3%" />
+<col width="2%" />
+<col width="2%" />
+<col width="3%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="2%" />
+<col width="4%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="4%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">student</th>
+<th align="left">school</th>
+<th align="left">sex</th>
+<th align="right">age</th>
+<th align="left">address</th>
+<th align="left">famsize</th>
+<th align="left">Pstatus</th>
+<th align="right">Medu</th>
+<th align="right">Fedu</th>
+<th align="left">Mjob</th>
+<th align="left">Fjob</th>
+<th align="left">reason</th>
+<th align="left">guardian</th>
+<th align="right">traveltime</th>
+<th align="right">studytime</th>
+<th align="right">failures</th>
+<th align="left">schoolsup</th>
+<th align="left">famsup</th>
+<th align="left">paid_mat</th>
+<th align="left">activities</th>
+<th align="left">nursery</th>
+<th align="left">higher</th>
+<th align="left">internet</th>
+<th align="left">romantic</th>
+<th align="right">famrel</th>
+<th align="right">freetime</th>
+<th align="right">goout</th>
+<th align="right">Dalc</th>
+<th align="right">Walc</th>
+<th align="right">health</th>
+<th align="right">absences_mat</th>
+<th align="right">G1_mat</th>
+<th align="right">G2_mat</th>
+<th align="right">G3_mat</th>
+<th align="left">paid_por</th>
+<th align="right">absences_por</th>
+<th align="right">G1_por</th>
+<th align="right">G2_por</th>
+<th align="right">G3_por</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id1</td>
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">18</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">at_home</td>
+<td align="left">teacher</td>
+<td align="left">course</td>
+<td align="left">mother</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">id2</td>
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">17</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">at_home</td>
+<td align="left">other</td>
+<td align="left">course</td>
+<td align="left">father</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="left">no</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">id4</td>
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">health</td>
+<td align="left">services</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">14</td>
+<td align="right">15</td>
+<td align="left">no</td>
+<td align="right">0</td>
+<td align="right">14</td>
+<td align="right">14</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">id5</td>
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">father</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="left">no</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">13</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">id6</td>
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">services</td>
+<td align="left">other</td>
+<td align="left">reputation</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="left">no</td>
+<td align="right">6</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">id7</td>
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">16</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">T</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">11</td>
+<td align="left">no</td>
+<td align="right">0</td>
+<td align="right">13</td>
+<td align="right">12</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">id8</td>
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">17</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">other</td>
+<td align="left">teacher</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="left">no</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">13</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">id9</td>
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">LE3</td>
+<td align="left">A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="left">services</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">16</td>
+<td align="right">18</td>
+<td align="right">19</td>
+<td align="left">no</td>
+<td align="right">0</td>
+<td align="right">15</td>
+<td align="right">16</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="left">id10</td>
+<td align="left">GP</td>
+<td align="left">M</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">other</td>
+<td align="left">other</td>
+<td align="left">home</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">14</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="left">no</td>
+<td align="right">0</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">id11</td>
+<td align="left">GP</td>
+<td align="left">F</td>
+<td align="right">15</td>
+<td align="left">U</td>
+<td align="left">GT3</td>
+<td align="left">T</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="left">teacher</td>
+<td align="left">health</td>
+<td align="left">reputation</td>
+<td align="left">mother</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="left">no</td>
+<td align="right">2</td>
+<td align="right">14</td>
+<td align="right">14</td>
+<td align="right">14</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="визуализация-самих-данных-для-лучшего-их-понимания" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.8</span> Визуализация самих данных для лучшего их понимания<a href="#визуализация-самих-данных-для-лучшего-их-понимания" class="anchor-section" aria-label="Anchor link to header"></a></h2>
