@@ -55,7 +55,8 @@ knitr::opts_chunk$set(fig.path = "images/")
 studens_mat <- read_csv("student-mat.csv")
 studens_mat %>% 
   rename_with(., ~ paste0(., "_mat"), .cols = c(absences, paid, G1, G2, G3)) -> studens_mat #переименовываю колонки для упрощения понимания, какие относятся к математикие
-kable(studens_mat[1:10,]) %>% scroll_box(width = "100%")#визуализирую табличку для этой книжки
+# kable(studens_mat[1:10,]) %>% scroll_box(width = "100%")
+#визуализирую табличку для этой книжки
 ```
 
 ```{r, eval=TRUE, results = "asis"}
