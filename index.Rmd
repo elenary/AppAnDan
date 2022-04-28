@@ -17,6 +17,11 @@ library(tidyverse)
 library(viridis)
 library(knitr)
 ```
+
+
+```{r opts, echo = FALSE}
+knitr::opts_chunk$set(fig.path = "images/")
+```
 # Чек-лист работы с данными
 
 Рассмотрим, как должен выглядеть чек-лист работы с данными для проверки себя, если бы эти экспериментальные данные мы собирали бы сами?
@@ -173,11 +178,9 @@ students %>%
   geom_histogram(binwidth = 0.5) +
   theme_minimal()
 
-<<<<<<< HEAD
-knitr::opts_chunk$set(fig.path = "images/")
-=======
-knitr::opts_chunk$set(fig.path = "_main_files/figure-html/")
->>>>>>> 39db1d51ce022678dc6fa4e25a1b8f2240b64790
+# knitr::opts_chunk$set(fig.path = "images/")
+# knitr::include_graphics(rep("images/knit-logo.png", 3))
+
 ```
 **График плотности вероятности**
 
