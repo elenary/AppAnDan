@@ -173,7 +173,7 @@ students %>%
   geom_histogram(binwidth = 0.5) +
   theme_minimal()
 
-knitr::opts_chunk$set(fig.path = "docs/")
+knitr::opts_chunk$set(fig.path = "images/")
 ```
 **График плотности вероятности**
 
