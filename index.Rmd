@@ -183,8 +183,8 @@ students %>%
 
 ```{r, eval=TRUE}
 students %>% 
-  ggplot(aes(x=Walc)) +
-  geom_bar(aes(fill = as.factor(Walc)), stat = 'count') +
+  ggplot(aes(x=Walc, y = as.factor(age))) +
+  geom_bar(aes(fill = as.factor(Walc)), stat = 'identity') +
   theme_minimal()
 ```
 
@@ -330,7 +330,4 @@ students %>%
 
 <!--chapter:end:index.Rmd-->
 
-
-
-<!--chapter:end:index.Rmd-->
 
