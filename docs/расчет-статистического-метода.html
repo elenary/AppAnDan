@@ -1753,6 +1753,26 @@ yes
 ## sample estimates:
 ##         cor 
 ## -0.05822595</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="расчет-статистического-метода.html#cb69-1"></a>model_Gmat &lt;-<span class="st"> </span><span class="kw">lm</span>(students<span class="op">$</span>G_mat <span class="op">~</span><span class="st"> </span>students<span class="op">$</span>absences_mat)</span>
+<span id="cb69-2"><a href="расчет-статистического-метода.html#cb69-2"></a><span class="kw">summary</span>(model_Gmat)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = students$G_mat ~ students$absences_mat)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.3130 -2.1013  0.0045  2.4727  8.1262 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           11.31298    0.24196   46.76   &lt;2e-16 ***
+## students$absences_mat -0.02645    0.02544   -1.04    0.299    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.559 on 318 degrees of freedom
+## Multiple R-squared:  0.00339,    Adjusted R-squared:  0.0002563 
+## F-statistic: 1.082 on 1 and 318 DF,  p-value: 0.2991</code></pre>
 </div>
             </section>
 

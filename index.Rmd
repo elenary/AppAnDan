@@ -640,6 +640,11 @@ exp(coef(multinom_model))
 cor.test(students$absences_mat, students$G_mat, alternative = "less", method = 'pearson')
 ```
 
+```{r, eval=TRUE}
+model_Gmat <- lm(students$G_mat ~ students$absences_mat)
+summary(model_Gmat)
+```
+
 # Визуализация результатов
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&usqp=CAU){width=2%}  **Результаты визуализированы, так, чтобы их было легче правильно воспринять**
@@ -661,13 +666,23 @@ students %>%
   geom_boxplot(aes(fill = `15th`)) +
   theme_minimal()
 ```
-```{r}
+Визуализации для гипотезы 2
+
+```{r, eval=TRUE}
 students %>% 
-  ggplot(aes(x=`15th`, y = Walc)) +
-  geom_boxplot(aes(fill = `15th`)) +
+  ggplot(aes(x=famrel, y = Walc)) +
+  geom_point(aes(colour = famrel)) +
   theme_minimal()
 ```
+Визуализации для гипотезы 3
 
+```{r, eval=TRUE}
+students %>% 
+  ggplot(aes(x=absences_mat, y = G_mat)) +
+  geom_point(aes(colour = absences_mat)) +
+  geom_smooth(method="lm") +
+  theme_minimal()
+```
 
 Визуализируем матрицу корреляций в коррелограмму
 
