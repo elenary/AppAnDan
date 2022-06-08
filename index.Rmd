@@ -21,7 +21,7 @@ library(kableExtra)
 
 
 ```{r opts, echo = FALSE}
-knitr::opts_chunk$set(fig.path = "docs/images/")
+knitr::opts_chunk$set(fig.path = "images/")
 
 # knitr::include_graphics(rep("images/knit-logo.png", 3))
 ```
