@@ -197,18 +197,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-2"><a href="визуализация-результатов.html#cb86-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>adult, <span class="dt">y =</span> Walc)) <span class="op">+</span></span>
 <span id="cb86-3"><a href="визуализация-результатов.html#cb86-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> adult)) <span class="op">+</span></span>
 <span id="cb86-4"><a href="визуализация-результатов.html#cb86-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="docs/images/unnamed-chunk-44-1.png" width="672" /></p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="визуализация-результатов.html#cb87-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb87-2"><a href="визуализация-результатов.html#cb87-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">15th</span><span class="st">`</span>, <span class="dt">y =</span> Walc)) <span class="op">+</span></span>
 <span id="cb87-3"><a href="визуализация-результатов.html#cb87-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">15th</span><span class="st">`</span>)) <span class="op">+</span></span>
 <span id="cb87-4"><a href="визуализация-результатов.html#cb87-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-45-1.png" width="672" />
+<p><img src="docs/images/unnamed-chunk-45-1.png" width="672" />
 Визуализации для гипотезы 2</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="визуализация-результатов.html#cb88-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb88-2"><a href="визуализация-результатов.html#cb88-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>famrel, <span class="dt">y =</span> Walc)) <span class="op">+</span></span>
 <span id="cb88-3"><a href="визуализация-результатов.html#cb88-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> famrel)) <span class="op">+</span></span>
 <span id="cb88-4"><a href="визуализация-результатов.html#cb88-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-46-1.png" width="672" />
+<p><img src="docs/images/unnamed-chunk-46-1.png" width="672" />
 Визуализации для гипотезы 3</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="визуализация-результатов.html#cb89-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb89-2"><a href="визуализация-результатов.html#cb89-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>absences_mat, <span class="dt">y =</span> G_mat)) <span class="op">+</span></span>
@@ -216,11 +216,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb89-4"><a href="визуализация-результатов.html#cb89-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
 <span id="cb89-5"><a href="визуализация-результатов.html#cb89-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="images/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="docs/images/unnamed-chunk-47-1.png" width="672" /></p>
 <p>Визуализируем матрицу корреляций в коррелограмму</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="визуализация-результатов.html#cb91-1"></a><span class="kw">library</span>(corrplot)</span>
 <span id="cb91-2"><a href="визуализация-результатов.html#cb91-2"></a><span class="kw">corrplot</span>(<span class="kw">cor</span>(students_numeric_matrix), <span class="dt">method=</span><span class="st">&quot;circle&quot;</span>)</span></code></pre></div>
-<p><img src="images/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="docs/images/unnamed-chunk-48-1.png" width="672" /></p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="визуализация-результатов.html#cb92-1"></a><span class="co"># corrplot(rcorr(students_numeric_matrix)$r, p.mat = rcorr(students_numeric_matrix)$P, sig.level = 0.05, insig = &quot;blank&quot;)</span></span></code></pre></div>
 
 
