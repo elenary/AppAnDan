@@ -378,6 +378,14 @@ Walc -- явно относится к порядковой шкале: може
 ![](images/qrp.jpg){width=70%}
 </p>
 
+<p align="center">
+![](images/circle1.jpg){width=70%}
+</p>
+
+<p align="center">
+![](images/circle2.jpg){width=70%}
+</p>
+
 
 <p align="center">
 ![](images/prevalence.jpg)
