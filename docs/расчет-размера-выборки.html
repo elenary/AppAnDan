@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 8 Выбор среды анализа данных | Прикладной анализ данных</title>
+  <title> 7 Расчет размера выборки | Прикладной анализ данных</title>
   <meta name="description" content="Занятие по прикладному анализу данных." />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 8 Выбор среды анализа данных | Прикладной анализ данных" />
+  <meta property="og:title" content=" 7 Расчет размера выборки | Прикладной анализ данных" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Занятие по прикладному анализу данных." />
   <meta name="github-repo" content="elenary/AppAnDan" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 8 Выбор среды анализа данных | Прикладной анализ данных" />
+  <meta name="twitter:title" content=" 7 Расчет размера выборки | Прикладной анализ данных" />
   
   <meta name="twitter:description" content="Занятие по прикладному анализу данных." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="расчет-размера-выборки.html"/>
-<link rel="next" href="препроцессинг.html"/>
+<link rel="prev" href="статистики-вывода-выбор-статистического-метода.html"/>
+<link rel="next" href="выбор-среды-анализа-данных.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -191,19 +191,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="выбор-среды-анализа-данных" class="section level1 hasAnchor">
-<h1><span class="header-section-number"> 8</span> Выбор среды анализа данных<a href="выбор-среды-анализа-данных.html#выбор-среды-анализа-данных" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&amp;usqp=CAU" style="width:2.0%" /> <strong>Выбрана среда для анализа данных и конкретная функция под выбранный статистический критерий (или несколько функций) (если нужно - установлен пакет для выбранных функций)</strong></p>
-<p>Как вы уже догадались, я обрабатываю данные в R.
-<em>Этот сайт, кстати, тоже сделан на языке R в RStudio с помощью текстовой разметки RMarkdown. Об этом мы тоже немного поговорим на последнем семинаре, когда будем говорить про презентации результатов</em></p>
+<div id="расчет-размера-выборки" class="section level1 hasAnchor">
+<h1><span class="header-section-number"> 7</span> Расчет размера выборки<a href="расчет-размера-выборки.html#расчет-размера-выборки" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>После того, как мы выбрали уровень значимости, уроовень статистической мощности и статистический критерий, который мы будем использовать для проверки гипотезы, нам нужно рассчитать, сколько наблюдений нужно набрать, чтобы сделать точный вывод с учетом всех выбранных нами допущений и вероятностей относительно ложнооположительного и ложноотрицательного вывода?</p>
+<p>Этот пункт раньше часто пропускался: казалось, что размер выборки не требует определенного расчета, и достаточно опираться на предыдущие исследование. Оказалось, что это не так, подробнее о последствиях такого подхода в следующем подразделе <a href="расчет-статистического-метода-и-интерпретация-результатов.html#questionable-and-good-research-practices">Questionable and good research practices</a>.</p>
+<p>Размер выборки неразрывно связан с тремя другими параметрами: статистической мощностью (чаще всего выбираем на уроовне 80%), уровня значимости и размера эффекта. Он рассчитывается на основании статистической мощности, уровня значимости и ожидаемого размера эффекта выбранного статистического критерия</p>
+<p><strong>Размер эффекта</strong> – это величина наблюдаемых различий. За степень различий отвечает не полученная статистика после примененного статистического критерия (например, t-значение, F-значение), и не p-значение, а отдельная метрика. Эта метрика расчитывается по формулам индивидуально для каждого статистического теста. Например, для t-testа размер эффекта – это Cohen’s d. В психологических исследованиях размер эффекта редко бывает большим. И чем меньше ожидаемый размер эффекта, тем больше наблюдений нам надо собрать для возможности сделать точный вывод о наличи или отсутствии различий в генеральной совокупности.</p>
+<p align="center">
+<img src="images/power_samplesize.jpg" />
+</p>
+<p>Зная статистическую мощность, уровень значимости и размер эффекта – размер выборки можно рассчитать в Gpower <a href="https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower" class="uri">https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower</a> или в R, например, с помощью пакета <code>pwr</code> <a href="https://cran.r-project.org/web/packages/pwr/pwr.pdf" class="uri">https://cran.r-project.org/web/packages/pwr/pwr.pdf</a></p>
+<p>Для того, чтобы детально поразбираться в нюансах размера эффекта и выборки, можно пройти курс Лакенса <a href="https://www.coursera.org/learn/statistical-inferences" class="uri">https://www.coursera.org/learn/statistical-inferences</a> (кажется, только с vpn)</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="расчет-размера-выборки.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="препроцессинг.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="статистики-вывода-выбор-статистического-метода.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="выбор-среды-анализа-данных.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
