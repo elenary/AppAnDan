@@ -181,6 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.9" data-path="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#проверка-гипотезы-2-порядковая-логистическая-регрессия"><i class="fa fa-check"></i><b>12.9</b> Проверка гипотезы 2: порядковая логистическая регрессия</a></li>
 <li class="chapter" data-level="12.10" data-path="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#пример-для-хи-квадрат"><i class="fa fa-check"></i><b>12.10</b> Пример для хи-квадрат</a></li>
 <li class="chapter" data-level="12.11" data-path="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#визуализации-для-хи-квадрат"><i class="fa fa-check"></i><b>12.11</b> Визуализации для хи-квадрат</a></li>
+<li class="chapter" data-level="12.12" data-path="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#пример-для-мультиномиальной-логистической-регрессии"><i class="fa fa-check"></i><b>12.12</b> Пример для мультиномиальной логистической регрессии</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="" target="blank"></a></li>
@@ -3467,6 +3468,56 @@ yes
 <span id="cb103-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
 <span id="cb103-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
 <p><img src="images/unnamed-chunk-53-1.png" width="672" /></p>
+</div>
+<div id="пример-для-мультиномиальной-логистической-регрессии" class="section level2 hasAnchor">
+<h2><span class="header-section-number">12.12</span> Пример для мультиномиальной логистической регрессии<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#пример-для-мультиномиальной-логистической-регрессии" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Предположим, у нас есть предположение, что категорию пропусков занятий (“мало”, “средне”, “много”) можно предсказать по наличию дома интернета, работе матери и наличию или отсутствию романтических отношений (<em>! это НЕ СОДЕРЖАТЕЛЬНАЯ ГИПОТЕЗА. Если юы мы задумали такое исследование, нам было бы сложно объяснить, почему мы вообще решили такое исследоваить. Этот тест здесь просто для примера мультином лог регрессии</em>). Переменная <code>ansences_mat_groups</code> категориальная, принимает 3 возможных значения: “less”, “middle”, “more”, и мы будем строить для нее мультиноомиальную логистическую регрессию.</p>
+<p>Строить модель будем с помощью пакета <code>nnet</code> фунции <code>multinom</code>.</p>
+<p>Сначала нам нужно выбрать референсной значение – противоположное тому, которое мы хотим предсказать. Здесь у нас гипотеза связана с тем, что наличие интернета, романтических отношений и образования матери, связанное с отсутствие дома, может быть связано с большим количеством пропусков. Поэтому за референсное значение берем то, где меньше всего пропусков.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb104-1"></a><span class="kw">library</span>(nnet)</span>
+<span id="cb104-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb104-2"></a>students<span class="op">$</span>ansences_mat_groups2 &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">as.factor</span>(students<span class="op">$</span>ansences_mat_groups), <span class="dt">ref =</span> <span class="dv">3</span>)</span>
+<span id="cb104-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb104-3"></a><span class="kw">levels</span>(students<span class="op">$</span>ansences_mat_groups2)</span></code></pre></div>
+<pre><code>## [1] &quot;more&quot;   &quot;less&quot;   &quot;middle&quot;</code></pre>
+<p>Строим саму модель:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb106-1"></a>model_ansences_mat_groups &lt;-<span class="st"> </span><span class="kw">multinom</span>(ansences_mat_groups <span class="op">~</span><span class="st"> </span>internet <span class="op">+</span><span class="st"> </span>Mjob <span class="op">+</span><span class="st"> </span>romantic, <span class="dt">data =</span> students)</span></code></pre></div>
+<pre><code>## # weights:  24 (14 variable)
+## initial  value 351.555932 
+## iter  10 value 256.138935
+## iter  20 value 255.444149
+## iter  20 value 255.444149
+## iter  20 value 255.444149
+## final  value 255.444149 
+## converged</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb108-1"></a><span class="kw">summary</span>(model_ansences_mat_groups)</span></code></pre></div>
+<pre><code>## Call:
+## multinom(formula = ansences_mat_groups ~ internet + Mjob + romantic, 
+##     data = students)
+## 
+## Coefficients:
+##        (Intercept) internetyes  Mjobhealth  Mjobother Mjobservices Mjobteacher
+## middle   -1.130146  -0.2101027  0.07617281 0.08843108    0.4446334   0.6689585
+## more     -3.832296   1.1576313 -0.66428760 0.11017326    0.9395912   0.1361420
+##        romanticyes
+## middle   0.6781589
+## more     0.7151319
+## 
+## Std. Errors:
+##        (Intercept) internetyes Mjobhealth Mjobother Mjobservices Mjobteacher
+## middle   0.4185274   0.3764586   0.568958 0.4241679    0.4616164   0.4780972
+## more     1.1613018   1.0681404   1.274832 0.8440447    0.8403030   0.9690785
+##        romanticyes
+## middle   0.2723936
+## more     0.4720498
+## 
+## Residual Deviance: 510.8883 
+## AIC: 538.8883</code></pre>
+<p>Обратите внимание, что в аутпуте модели нет p-value – чтобы их получить, нужно выполнить дополнительнве действия, пока пропустим их.</p>
+<p>Визуализируем результаты:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-1"></a><span class="co"># students %&gt;% </span></span>
+<span id="cb110-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-2"></a><span class="co"># ggplot(aes(x = Mjob, y = probability)) + </span></span>
+<span id="cb110-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-3"></a><span class="co">#   geom_line() + </span></span>
+<span id="cb110-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-4"></a><span class="co">#   facet_grid(ansences_mat_groups ~., scales = &quot;free&quot;)</span></span></code></pre></div>
+<p>Более подробно можно изучить этот анадиз по ссылке <a href="https://bookdown.org/chua/ber642_advanced_regression/multinomial-logistic-regression.html" class="uri">https://bookdown.org/chua/ber642_advanced_regression/multinomial-logistic-regression.html</a>, для визуализации результатов лучше всего подойдут кривые вероятностей, как здесь <a href="https://stats.oarc.ucla.edu/r/dae/multinomial-logistic-regression/" class="uri">https://stats.oarc.ucla.edu/r/dae/multinomial-logistic-regression/</a></p>
 
 
 </div>
