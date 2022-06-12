@@ -629,8 +629,11 @@ students %>%
 # Статистики вывода: расчет статистического метода и интерпретация результатов
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&usqp=CAU){width=2%}  **Проведен расчет выбранного статистического критерия с помощью выбранной функции**
+
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&usqp=CAU){width=2%}  **Вид полученных результатов понятен для интерпретации, и результаты согласуются с представлением о том, как они должны выглядеть**
+
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&usqp=CAU){width=2%}  **Результаты визуализированы, так, чтобы их было легче правильно воспринять**
+
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&usqp=CAU){width=2%}  **Результаты проинтепретированы и сделан вывод относительно статистической и экспериментальной гипотез**
 
 Итак, мы шли через весь чек-лист и готовились к самому главному -- расчету выбранного статистического теста. Он даст нам несколько заветных цифр (значение самой статистики или коэффциента и p-value), по которым мы можем сделать вывод о связи между НП и ЗП, о различиях между группами или о вкладе какого-либо фактора в изменчивость наблюдаемых проявлений, в завимости от гипотезы. 
@@ -711,7 +714,7 @@ students %>%
 
 Начнем проверять с третьей гипотезы, чтобы идти от простого статистического метода к более сложным.
 
-### Проверка гипотезы 3: корреляционный тест и линейная регрессия
+### Проверка гипотезы 3_a: корреляционный тест и линейная регрессия
 
 Первый вариант гипотезы 3 -- о наличии линейной связи, проверяется корреляционным тестом и обычной линейной регрессией.
 
@@ -734,8 +737,30 @@ model_Gmat <- lm(students$G_mat ~ students$absences_mat)
 summary(model_Gmat)
 ```
 
+### Визуализации гипотезы 3_a: корреляционный тест и линейная регрессия
 
-### Проверка гипотезы 3: ANOVA
+Сначала я включу пакет `viridis`, чтобы поменять дефолтные цвета на более красивые. Там, где я буду его использовать, я буду добавлять к графику `scale_color_viridis()` (для точек и контуров) или `scale_fill_viridis()` (для заливки объектов). Подробнее https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+
+```{r, eval=TRUE}
+library(viridis)
+```
+
+```{r, eval=TRUE}
+students %>% 
+  ggplot(aes(x=absences_mat, y = G_mat)) +
+  geom_point(aes(colour = absences_mat)) +
+  geom_smooth(method="lm") +
+  scale_color_viridis() +
+  theme_minimal()
+```
+Другой варивант этого же графика с помощью пакета `ggstatsplot` и функции из него `ggscatterstats`
+```{r, eval=TRUE}
+library(ggstatsplot)
+ggscatterstats(data = students, x = absences_mat, y = G_mat, bf.message = FALSE)
+```
+
+
+### Проверка гипотезы 3_b: ANOVA
 
 > Гипотеза 3_b `Студенты, у кого было от 0 до 5 пропусков, от 6 до 15 и больше 15 будут иметь разный средний балл по предмету`
 
@@ -757,17 +782,27 @@ kable(students[1:10,]) %>% scroll_box(width = "100%")
 model_abs_mat <- aov(G_mat ~ ansences_mat_groups, data = students)
 summary(model_abs_mat)
 
-model_abs_por <- aov(G_mat ~ ansences_por_groups, data = students)
+model_abs_por <- aov(G_por ~ ansences_por_groups, data = students)
 summary(model_abs_por)
 ```
 
-ANOVA в R c помощью более тонко настраеваемо1:
-```{r, eval=TRUE}
-model_abs_mat <- aov(G_mat ~ ansences_mat_groups, data = students)
-summary(model_abs_mat)
+ANOVA в R c помощью более тонко и понятно настраеваемой функции `ezANOVA` из пакета `ez`:
 
-model_abs_por <- aov(G_mat ~ ansences_por_groups, data = students)
-summary(model_abs_por)
+```{r, eval=TRUE}
+library("ez")
+model_abs_mat_ez = ezANOVA(data = students, dv = G_mat, wid = student,
+                           between = ansences_mat_groups)
+model_abs_mat_ez
+summary(model_abs_mat_ez)
+```
+### Визуализации гипотезы 3_b: ANOVA
+
+```{r}
+students %>% 
+  ggplot(aes(x=ansences_mat_groups, y = G_mat)) +
+  geom_boxplot(aes(fill = ansences_mat_groups)) +
+  scale_fill_viridis(discrete=TRUE) +
+  theme_minimal()
 ```
 
 ### Проверка гипотезы 1: тест Манна-Уитни
@@ -792,14 +827,35 @@ kable(students[1:10,]) %>% scroll_box(width = "100%")
 ```{r, eval=TRUE}
 wilcox.test(students$Walc ~ students$adult, paired = FALSE, alternative = "greater")
 ```
+
 В тесте Гипотезы 1_b ЗП -- порядковая, ЗП может принимать 5 значений -- значит, я рассматриваю ее как количественную. Далее, одна НП, и наша гипотеза -- о сравнении двух групп между собой. Эти группы независимы (тестируются оценки разных студентов, никак не связанных друг с другом). Значит, будем использовать тест Манна-Уитни (Mann-Whitney test)
 ```{r, eval=TRUE}
 
 wilcox.test(students$Walc ~ students$`15th`, paired = FALSE, alternative = "greater")
 ```
+
 *Чем отличаются результаты тестов?*
 
-### Проверка гипотезы 2: корреляционный тест (метод Спирмена)
+### Визуализации гипотезы 1: тест Манна-Уитни
+
+```{r}
+students %>% 
+  ggplot(aes(x=adult, y = Walc)) +
+  geom_boxplot(aes(fill = adult)) +
+  scale_fill_viridis(discrete=TRUE) +
+  theme_minimal()
+```
+
+```{r}
+students %>% 
+  ggplot(aes(x=`15th`, y = Walc)) +
+  geom_boxplot(aes(fill = `15th`)) +
+  scale_fill_viridis(discrete=TRUE) +
+  theme_minimal()
+```
+
+
+### Проверка гипотезы 2: корреляционный тест
 
 Проведем тест для следующей гипотезы.
 
@@ -813,6 +869,29 @@ wilcox.test(students$Walc ~ students$`15th`, paired = FALSE, alternative = "grea
 
 ```{r, eval=TRUE}
 cor.test(students$famrel, students$Walc, method = 'spearman')
+```
+### Визуализации гипотезы 2: корреляционный тест (методом Спирмена, для порядковых переменных)
+
+Первый вариант -- мозаичный плот: размер плитки отражает частоту совпадения таких значений двух переменных
+
+```{r, eval=TRUE}
+library(ggmosaic)
+students %>% 
+  ggplot(aes()) + 
+  geom_mosaic(aes(x = product(famrel), fill = Walc)) +
+  scale_fill_viridis(discrete=TRUE) +
+  theme_minimal() 
+```
+
+Другой вариант -- хитмеп, как в коррелограмме, где размеры фиксированные, а за частоту совпадений отвечает цвет.
+```{r, eval=TRUE}
+students %>% 
+  ggplot(aes(x = as.factor(famrel), y = as.factor(Walc))) + 
+  geom_bin2d() +
+  scale_fill_viridis() +
+  theme_minimal() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())
 ```
 
 ### Проверка гипотезы 2: порядковая логистическая регрессия
@@ -858,54 +937,29 @@ exp(coef(multinom_model))
 
 ### Пример для хи-квадрат
 
+Хи-квадратом мы обычно проверяем коррялцию двух категориальных переменных между собой: порядковых, если у нас не шкала Лайерта или мало возможных значений, и метод корреляции Спирмена не подходит, или номинальных, где корреляцию Спирмена провести уже невозможно. 
 
+Например, давайте проверим гипотезу о том, что наличие или отсутствие интернета в квартире связано с наличием или отсутствием романтических отношений. Предположим, что португальские школьники, у кого дома есть интернет, реже вступают в романтические отношения, по сравнению с теми, у кого интернета нет. Для этого будем использовать метод хи-квадрат. НП -- наличие или отсутствие интернета (переменная internet), ЗП -- наличие или отсутствие романтических отношений (romantic).
 
-## Визуализация результатов
+Проведем тест:
 
-Несмотря на то, что визуализация результатов стоит последний пунктом, это очень важный этап. Кроме того, он может использоваться и до получения результатов, чтобы прикинуть, какими  получатся результаты еще до проведения статистического теста.
-
-Визуализации для гипотезы 1
-
-```{r}
-students %>% 
-  ggplot(aes(x=adult, y = Walc)) +
-  geom_boxplot(aes(fill = adult)) +
-  theme_minimal()
+```{r, eval=FALSE, echo=FALSE}
+chisq.test(students$internet, students$romantic, correct=FALSE)
 ```
 
-```{r}
-students %>% 
-  ggplot(aes(x=`15th`, y = Walc)) +
-  geom_boxplot(aes(fill = `15th`)) +
-  theme_minimal()
-```
-Визуализации для гипотезы 2
+
+Сравниваем полученное p-value с выбранным уровнем $\alpha = 0.05$.  p-value < α, значит, вероятность получить такую связь между переменными при условии, если на самом деле ее нет, меньше нашего допустимого уровня ложноположительных результатов, мы отвергаем нулевую гипотезу и делаем вывод о **наличии корреляционной связи.**
+
+### Визуализации для хи-квадрат
 
 ```{r, eval=TRUE}
+library(ggmosaic)
 students %>% 
-  ggplot(aes(x=famrel, y = Walc)) +
-  geom_point(aes(colour = famrel)) +
-  theme_minimal()
+  ggplot(aes()) + 
+  geom_mosaic(aes(x = product(internet), fill = romantic)) +
+  scale_fill_viridis(discrete=TRUE) +
+  theme_minimal() 
 ```
-Визуализации для гипотезы 3
-
-```{r, eval=TRUE}
-students %>% 
-  ggplot(aes(x=absences_mat, y = G_mat)) +
-  geom_point(aes(colour = absences_mat)) +
-  geom_smooth(method="lm") +
-  theme_minimal()
-```
-
-Визуализируем матрицу корреляций в коррелограмму
-
-
-```{r}
-library(corrplot)
-corrplot(cor(students_numeric_matrix), method="circle")
-# corrplot(rcorr(students_numeric_matrix)$r, p.mat = rcorr(students_numeric_matrix)$P, sig.level = 0.05, insig = "blank")
-```
-
 
 
 <!--chapter:end:index.Rmd-->
