@@ -3514,16 +3514,24 @@ yes
 <p>Хи-квадратом мы обычно проверяем коррялцию двух категориальных переменных между собой: порядковых, если у нас не шкала Лайерта или мало возможных значений, и метод корреляции Спирмена не подходит, или номинальных, где корреляцию Спирмена провести уже невозможно.</p>
 <p>Например, давайте проверим гипотезу о том, что наличие или отсутствие интернета в квартире связано с наличием или отсутствием романтических отношений. Предположим, что португальские школьники, у кого дома есть интернет, реже вступают в романтические отношения, по сравнению с теми, у кого интернета нет. Для этого будем использовать метод хи-квадрат. НП – наличие или отсутствие интернета (переменная internet), ЗП – наличие или отсутствие романтических отношений (romantic).</p>
 <p>Проведем тест:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-1"></a><span class="kw">chisq.test</span>(students<span class="op">$</span>internet, students<span class="op">$</span>romantic, <span class="dt">correct=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  students$internet and students$romantic
+## X-squared = 3.9258, df = 1, p-value = 0.04755</code></pre>
 <p>Сравниваем полученное p-value с выбранным уровнем <span class="math inline">\(\alpha = 0.05\)</span>. p-value &lt; α, значит, вероятность получить такую связь между переменными при условии, если на самом деле ее нет, меньше нашего допустимого уровня ложноположительных результатов, мы отвергаем нулевую гипотезу и делаем вывод о <strong>наличии корреляционной связи.</strong></p>
 </div>
 <div id="визуализации-для-хи-квадрат" class="section level3 hasAnchor">
 <h3><span class="header-section-number">11.3.11</span> Визуализации для хи-квадрат<a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#визуализации-для-хи-квадрат" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-1"></a><span class="kw">library</span>(ggmosaic)</span>
-<span id="cb105-2"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-2"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb105-3"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>()) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb105-4"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-4"></a><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(internet), <span class="dt">fill =</span> romantic)) <span class="op">+</span></span>
-<span id="cb105-5"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
-<span id="cb105-6"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb105-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
+<p>Хи-квадрат чаще всего визуализируют уже знакомым по корреляции Спирмена мозаичным графиком.
+Указываем НП как x=product(НП), и ЗП как fill = ЗП.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb107-1"></a><span class="kw">library</span>(ggmosaic)</span>
+<span id="cb107-2"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb107-2"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb107-3"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb107-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb107-4"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb107-4"></a><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(internet), <span class="dt">fill =</span> romantic)) <span class="op">+</span></span>
+<span id="cb107-5"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb107-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb107-6"><a href="статистики-вывода-расчет-статистического-метода-и-интерпретация-результатов.html#cb107-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
 <p><img src="images/unnamed-chunk-52-1.png" width="672" /></p>
 
 
