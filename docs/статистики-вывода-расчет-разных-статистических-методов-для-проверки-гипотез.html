@@ -3511,12 +3511,25 @@ yes
 ## 
 ## Residual Deviance: 510.8883 
 ## AIC: 538.8883</code></pre>
-<p>Обратите внимание, что в аутпуте модели нет p-value – чтобы их получить, нужно выполнить дополнительнве действия, пока пропустим их.</p>
-<p>Визуализируем результаты:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-1"></a><span class="co"># students %&gt;% </span></span>
-<span id="cb110-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-2"></a><span class="co"># ggplot(aes(x = Mjob, y = probability)) + </span></span>
-<span id="cb110-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-3"></a><span class="co">#   geom_line() + </span></span>
-<span id="cb110-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-4"></a><span class="co">#   facet_grid(ansences_mat_groups ~., scales = &quot;free&quot;)</span></span></code></pre></div>
+<p>Обратите внимание, что в аутпуте модели нет p-value – чтобы их получить, нужно выполнить дополнительнве действия:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-1"></a>z &lt;-<span class="st"> </span><span class="kw">summary</span>(model_ansences_mat_groups)<span class="op">$</span>coefficients<span class="op">/</span><span class="kw">summary</span>(model_ansences_mat_groups)<span class="op">$</span>standard.errors</span>
+<span id="cb110-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-2"></a>p &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(z), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb110-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-3"></a>p</span></code></pre></div>
+<pre><code>##         (Intercept) internetyes Mjobhealth Mjobother Mjobservices Mjobteacher
+## middle 0.0069278582   0.5767740  0.8934965 0.8348532    0.3354422    0.161750
+## more   0.0009668487   0.2784615  0.6023121 0.8961470    0.2634997    0.888276
+##        romanticyes
+## middle  0.01278765
+## more    0.12978499</code></pre>
+<p>Это наши p-value.</p>
+<p>Понятнее всего результаты логистической модели визуализировать в виде кривых вероятностей в пользу одного или друого варианта ЗП. Эти вероятности мы получаем как коэффициенты модели:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb112-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(model_ansences_mat_groups)) <span class="co">#вытащим коэффициенты из модели (они отвечают за вероятности)</span></span></code></pre></div>
+<pre><code>##        (Intercept) internetyes Mjobhealth Mjobother Mjobservices Mjobteacher
+## middle  0.32298602    0.810501   1.079149  1.092459     1.559918    1.952203
+## more    0.02165984    3.182386   0.514640  1.116471     2.558935    1.145845
+##        romanticyes
+## middle    1.970247
+## more      2.044456</code></pre>
 <p>Более подробно можно изучить этот анадиз по ссылке <a href="https://bookdown.org/chua/ber642_advanced_regression/multinomial-logistic-regression.html" class="uri">https://bookdown.org/chua/ber642_advanced_regression/multinomial-logistic-regression.html</a>, для визуализации результатов лучше всего подойдут кривые вероятностей, как здесь <a href="https://stats.oarc.ucla.edu/r/dae/multinomial-logistic-regression/" class="uri">https://stats.oarc.ucla.edu/r/dae/multinomial-logistic-regression/</a></p>
 
 

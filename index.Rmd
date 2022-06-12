@@ -995,15 +995,20 @@ levels(students$ansences_mat_groups2)
 model_ansences_mat_groups <- multinom(ansences_mat_groups ~ internet + Mjob + romantic, data = students)
 summary(model_ansences_mat_groups)
 ```
-Обратите внимание, что в аутпуте модели нет p-value -- чтобы их получить, нужно выполнить дополнительнве действия, пока пропустим их.
-
-Визуализируем результаты:
+Обратите внимание, что в аутпуте модели нет p-value -- чтобы их получить, нужно выполнить дополнительнве действия:
 
 ```{r, eval=TRUE}
-# students %>% 
-# ggplot(aes(x = Mjob, y = probability)) + 
-#   geom_line() + 
-#   facet_grid(ansences_mat_groups ~., scales = "free")
+z <- summary(model_ansences_mat_groups)$coefficients/summary(model_ansences_mat_groups)$standard.errors
+p <- (1 - pnorm(abs(z), 0, 1)) * 2
+p
+```
+Это наши p-value.
+
+Понятнее всего результаты логистической модели визуализировать в виде кривых вероятностей в пользу одного или друого варианта ЗП. Эти вероятности мы получаем как коэффициенты модели:
+
+
+```{r, eval=TRUE}
+exp(coef(model_ansences_mat_groups)) #вытащим коэффициенты из модели (они отвечают за вероятности)
 ```
 
 
