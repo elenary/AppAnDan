@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 8 Выбор среды анализа данных | Прикладной анализ данных</title>
+  <title> 11 Статистики вывода: главные понятия перед расчетом статистических тестов | Прикладной анализ данных</title>
   <meta name="description" content="Занятие по прикладному анализу данных." />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 8 Выбор среды анализа данных | Прикладной анализ данных" />
+  <meta property="og:title" content=" 11 Статистики вывода: главные понятия перед расчетом статистических тестов | Прикладной анализ данных" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Занятие по прикладному анализу данных." />
   <meta name="github-repo" content="elenary/AppAnDan" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 8 Выбор среды анализа данных | Прикладной анализ данных" />
+  <meta name="twitter:title" content=" 11 Статистики вывода: главные понятия перед расчетом статистических тестов | Прикладной анализ данных" />
   
   <meta name="twitter:description" content="Занятие по прикладному анализу данных." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="расчет-размера-выборки.html"/>
-<link rel="next" href="препроцессинг.html"/>
+<link rel="prev" href="описательные-статистики-и-визуализации.html"/>
+<link rel="next" href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -202,19 +202,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="выбор-среды-анализа-данных" class="section level1 hasAnchor">
-<h1><span class="header-section-number"> 8</span> Выбор среды анализа данных<a href="выбор-среды-анализа-данных.html#выбор-среды-анализа-данных" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&amp;usqp=CAU" style="width:2.0%" /> <strong>Выбрана среда для анализа данных и конкретная функция под выбранный статистический критерий (или несколько функций) (если нужно - установлен пакет для выбранных функций)</strong></p>
-<p>Как вы уже догадались, я обрабатываю данные в R.
-<em>Этот сайт, кстати, тоже сделан на языке R в RStudio с помощью текстовой разметки RMarkdown. Об этом мы тоже немного поговорим на последнем семинаре, когда будем говорить про презентации результатов</em></p>
+<div id="статистики-вывода-главные-понятия-перед-расчетом-статистических-тестов" class="section level1 hasAnchor">
+<h1><span class="header-section-number"> 11</span> Статистики вывода: главные понятия перед расчетом статистических тестов<a href="статистики-вывода-главные-понятия-перед-расчетом-статистических-тестов.html#статистики-вывода-главные-понятия-перед-расчетом-статистических-тестов" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&amp;usqp=CAU" style="width:2.0%" /> <strong>Проведен расчет выбранного статистического критерия с помощью выбранной функции</strong></p>
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&amp;usqp=CAU" style="width:2.0%" /> <strong>Вид полученных результатов понятен для интерпретации, и результаты согласуются с представлением о том, как они должны выглядеть</strong></p>
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&amp;usqp=CAU" style="width:2.0%" /> <strong>Результаты визуализированы, так, чтобы их было легче правильно воспринять</strong></p>
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdCGwEb-Redy2Agi8mfYhxZRBgdywIFNzVha_g_S2cFY-LzXLqY9se-wQfTvlbhP-yWvY&amp;usqp=CAU" style="width:2.0%" /> <strong>Результаты проинтепретированы и сделан вывод относительно статистической и экспериментальной гипотез</strong></p>
+<p>Итак, мы шли через весь чек-лист и готовились к самому главному – расчету выбранного статистического теста. Он даст нам несколько заветных цифр (значение самой статистики или коэффциента и p-value), по которым мы можем сделать вывод о связи между НП и ЗП, о различиях между группами или о вкладе какого-либо фактора в изменчивость наблюдаемых проявлений, в завимости от гипотезы.</p>
+<p>Что мы сделали (в идеале):</p>
+<ol style="list-style-type: decimal">
+<li>Сформулировали теоретическую гипотезу (даже несколько)</li>
+<li>Выбрали исследовательский метод, в котором ее можно проверить</li>
+<li>Перевели теоретическую гипотезу на язык исследования и сформулировали эмпирическую гипотезу</li>
+<li>Выбрали статистический метод, которым будем проверять гипотезу</li>
+<li>Получили представление, как будут выглядеть собранные данные после проведения исследования</li>
+<li>Собрали данные</li>
+<li>Предобработали данные</li>
+<li>Посмотрели на ЗП и НП, участвующие в нашей гипотезе, посчитали для них описательные статисики, сделали описательные визуализации, сравнили их с нашими ожиданиями</li>
+</ol>
+<p>Теперь можем проводить расчет статистического метода!</p>
+<div id="p-value-и-сравнение-с-α" class="section level2 hasAnchor">
+<h2><span class="header-section-number">11.1</span> p-value и сравнение с α<a href="статистики-вывода-главные-понятия-перед-расчетом-статистических-тестов.html#p-value-и-сравнение-с-α" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>p-value - вероятность получить такие (или более выраженные) различия, если нулевая гипотеза верна.</strong></p>
+<p align="center">
+<img src="images/pvalue_dist.jpg" />
+</p>
+<p align="center">
+<img src="images/pvalue_dist_2.jpg" />
+</p>
+</div>
+<div id="questionable-and-good-research-practices" class="section level2 hasAnchor">
+<h2><span class="header-section-number">11.2</span> Questionable and good research practices<a href="статистики-вывода-главные-понятия-перед-расчетом-статистических-тестов.html#questionable-and-good-research-practices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p align="center">
+<img src="images/qrp.jpg" style="width:70.0%" />
+</p>
+<p align="center">
+<img src="images/circle1.jpg" style="width:70.0%" />
+</p>
+<p align="center">
+<img src="images/circle2.jpg" style="width:70.0%" />
+</p>
+<p align="center">
+<img src="images/prevalence.jpg" />
+<em>John, L. K., Loewenstein, G., &amp; Prelec, D. (2012). Measuring the Prevalence of Questionable Research Practices With Incentives for Truth Telling. Psychological Science</em>
+</p>
+<p>Использование <strong>сомнительных исследовательских практик (questionable research practices)</strong> значительно увеличивает вероятность сделать ложноположительный (false-positive) вывод в своем исследовани.</p>
+<p>Чему, как правило, равна вероятность сделать ложноположительный вывод? Это уровень значимости <span class="math inline">\(\alpha\)</span>. Почему она может увеличиться, если мы поо умолчанию выбрали <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<p>Исследование, которое провели Simmons, Nelson, &amp; Simonsohn, 2011 называется “False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant”. В этом исследовании они осознанно применяли сомнительные исследовательские практики, считали статистические тесты с их учетом (например, выкинув одну из переменных), проводили много-много симуляций таких тестов и затем сравнивали результаты с теми, которые они получили бы, если бы проводили анализ по всем правилам. Самые впечатляющие результаты:</p>
+<ol style="list-style-type: decimal">
+<li>Манипуляции с выбором зависимых переменных (тестировали две, но выбрали только одну) увеличивают вероятность ложноположительного вывода с <strong>5% до 9.5%</strong> (и согласно другому исследованию, около 78% психологов так делали (John et a., 2012)!</li>
+<li>Манипуляции с выбором экспериментальных условий (тестировали в трех, но выбрали только два из них увеличивают вероятность ложноположительного вывода с <strong>5% до 12.6%</strong> (42% исследователей скорее всего через это проходили (John et a., 2012)</li>
+<li>Манипуляции с размером выборки (optional stopping, посмотрели на данные после 20 испытуемых, если не значимо — стали добирать и смотреть после 21, 22, 23 и тд испытуемых) увеличивает вероятность ложноположительного вывода с <strong>5% до 50%</strong> (62%-72% исследователей исследователей использовали такую практику (John et a., 2012)</li>
+<li>Комбинация (1) + (2) + (3) увеличивает вероятность ложноположительного вывода с <strong>5% до 60.7%</strong></li>
+</ol>
+<p>Почему еще это плохо, не только для текущего исследования, но и для всей области? Во-первых, если в литературе появляется <strong>ложноположительный вывод</strong> — его <strong>сложно полностью опровергнуть</strong>, он остается в литературе практически во всех случаях. Исследователи продолжают целые линии экспериментов, основанные на ложноположительных результатах. Во-вторых, ложноположительные выводы стимулируют <strong>publication bias</strong> – публикацию только тех исследований, в которых подтвердились гипотезы. Выходит, что исследователи немного экстрасенсы и могут выбирать для исследований только те гипотезы, которые наверняка подтверядся. В-третьих, если ложноположительные резульататы в ветви исследований были обнаружены, это подрывают доверие ко всей линии.</p>
+<p><strong>Good research practices</strong></p>
+<ul>
+<li>Решать, когда останавливать сбор данных, до начала эксперимента. Правило, на котором это решение основано, должно быть указано в статье (расчет выборки на основании statistical power, анализ данных с использованием sequential analysis etc).</li>
+<li>До эксперимента решать, на каком основании и по каким правилам будут производиться выбросы данных, и указывать это в статье.</li>
+<li>Принимать решение о том, как данные будут обрабатываться, до начала эксперимента.</li>
+<li>В статье указывать все переменные и все экспериментальные условия, которые участвовали в эксперименте (даже если они оказались незначимы)</li>
+<li>Пререгистрировать исследование (хотя бы для себя).</li>
+<li>Постоянно прокачивать навыки в статистике и анализе данных. Это база, верхней границы навыка не существует.</li>
+</ul>
+<p align="center">
+<img src="images/prereg.jpg" style="width:80.0%" />
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="расчет-размера-выборки.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="препроцессинг.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="описательные-статистики-и-визуализации.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
