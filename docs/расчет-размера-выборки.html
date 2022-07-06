@@ -208,11 +208,437 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>После того, как мы выбрали уровень значимости, уроовень статистической мощности и статистический критерий, который мы будем использовать для проверки гипотезы, нам нужно рассчитать, сколько наблюдений нужно набрать, чтобы сделать точный вывод с учетом всех выбранных нами допущений и вероятностей относительно ложнооположительного и ложноотрицательного вывода?</p>
 <p>Этот пункт раньше часто пропускался: казалось, что размер выборки не требует определенного расчета, и достаточно опираться на предыдущие исследование. Оказалось, что это не так, подробнее о последствиях такого подхода в следующем подразделе <a href="статистики-вывода-главные-понятия-перед-расчетом-статистических-тестов.html#questionable-and-good-research-practices">Questionable and good research practices</a>.</p>
 <p>Размер выборки неразрывно связан с тремя другими параметрами: статистической мощностью (чаще всего выбираем на уроовне 80%), уровня значимости и размера эффекта. Он рассчитывается на основании статистической мощности, уровня значимости и ожидаемого размера эффекта выбранного статистического критерия</p>
-<p><strong>Размер эффекта</strong> – это величина наблюдаемых различий. За степень различий отвечает не полученная статистика после примененного статистического критерия (например, t-значение, F-значение), и не p-значение, а отдельная метрика. Эта метрика расчитывается по формулам индивидуально для каждого статистического теста. Например, для t-test размер эффекта – это <span class="math inline">\(Cohen&#39;s d\)</span> или его нормализованная версия <span class="math inline">\(Hedges d\)</span>. Исключение составляет только коэффициент корреляции <span class="math inline">\(r\)</span> – он как раз будет являться и статистикой, и величиной эффекта. Для линейной регрессии с одинм предиктором размером эффекта может также являться <span class="math inline">\(R^2\)</span>, а для множественной, когда много предикторов, лучше уже использовать метрику <span class="math inline">\(Cohen’s f^2\)</span> В психологических исследованиях размер эффекта редко бывает большим. И чем меньше ожидаемый размер эффекта, тем больше наблюдений нам надо собрать для возможности сделать точный вывод о наличи или отсутствии различий в генеральной совокупности.</p>
+<p><strong>Размер эффекта</strong> – это величина наблюдаемых различий. За степень различий отвечает не полученная статистика после примененного статистического критерия (например, t-значение, F-значение), и не p-значение, а отдельная метрика. Эта метрика расчитывается по формулам индивидуально для каждого статистического теста. Например, для t-test размер эффекта – это <span class="math inline">\(Cohen&#39;s d\)</span> или его нормализованная версия <span class="math inline">\(Hedges` g\)</span>. Исключение составляет только коэффициент корреляции <span class="math inline">\(r\)</span> – он как раз будет являться и статистикой, и величиной эффекта. Для линейной регрессии с одинм предиктором размером эффекта может также являться <span class="math inline">\(R^2\)</span>, а для множественной, когда много предикторов, лучше уже использовать метрику <span class="math inline">\(Cohen’s f^2\)</span> В психологических исследованиях размер эффекта редко бывает большим. И чем меньше ожидаемый размер эффекта, тем больше наблюдений нам надо собрать для возможности сделать точный вывод о наличи или отсутствии различий в генеральной совокупности.</p>
+<p>Есть хорошая визуализация размера эффекта дла t-test <span class="math inline">\(Cohen&#39;s d\)</span> <a href="https://rpsychologist.com/d3/cohend/" class="uri">https://rpsychologist.com/d3/cohend/</a></p>
+<p>Размер эффекта обычно используется в двух случаях:</p>
+<ol style="list-style-type: decimal">
+<li>Для расчета размера выборки при планировании исследования <em>(текущий момент)</em> – в этом с лучае используется размер эффекта из аналогичных уже проведенных исследований для того, чтобы примерно оценить возможности поймать популяционный эффект на нашей выборке и набрать нужное количество.</li>
+<li>При репортинге результатов уже проведенного собственного статистического теста. Здесь он указывается вместе со статистиками, об этом в разделе <a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез">Статистики вывода: расчет разных статистических методов для проверки гипотез</a></li>
+</ol>
+<p>Если в статьях, на которые вы опираетесь при планировании исследования, не указан размер эффекта, его можно посчитать самостоятельно.</p>
+<p>Допустим, перед тестированием гипотезы о связи баллов и образования родители мы изучали похожее исследование</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="расчет-размера-выборки.html#cb13-1"></a>students_before &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/VladimirShitov/notebooks/master/datasets/StudentsPerformance.csv&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="расчет-размера-выборки.html#cb13-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">score =</span> <span class="kw">round</span>(<span class="kw">rowMeans</span>(<span class="kw">select</span>(., <span class="kw">c</span>(<span class="st">`</span><span class="dt">math score</span><span class="st">`</span>, <span class="st">`</span><span class="dt">reading score</span><span class="st">`</span>, <span class="st">`</span><span class="dt">writing score</span><span class="st">`</span>))),<span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   gender = col_character(),
+##   `race/ethnicity` = col_character(),
+##   `parental level of education` = col_character(),
+##   lunch = col_character(),
+##   `test preparation course` = col_character(),
+##   `math score` = col_double(),
+##   `reading score` = col_double(),
+##   `writing score` = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="расчет-размера-выборки.html#cb15-1"></a><span class="kw">kable</span>(students_before[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>) </span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:left;">
+race/ethnicity
+</th>
+<th style="text-align:left;">
+parental level of education
+</th>
+<th style="text-align:left;">
+lunch
+</th>
+<th style="text-align:left;">
+test preparation course
+</th>
+<th style="text-align:right;">
+math score
+</th>
+<th style="text-align:right;">
+reading score
+</th>
+<th style="text-align:right;">
+writing score
+</th>
+<th style="text-align:right;">
+score
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+group B
+</td>
+<td style="text-align:left;">
+bachelor’s degree
+</td>
+<td style="text-align:left;">
+standard
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+group C
+</td>
+<td style="text-align:left;">
+some college
+</td>
+<td style="text-align:left;">
+standard
+</td>
+<td style="text-align:left;">
+completed
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+group B
+</td>
+<td style="text-align:left;">
+master’s degree
+</td>
+<td style="text-align:left;">
+standard
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+group A
+</td>
+<td style="text-align:left;">
+associate’s degree
+</td>
+<td style="text-align:left;">
+free/reduced
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+group C
+</td>
+<td style="text-align:left;">
+some college
+</td>
+<td style="text-align:left;">
+standard
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:right;">
+76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+group B
+</td>
+<td style="text-align:left;">
+associate’s degree
+</td>
+<td style="text-align:left;">
+standard
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+group B
+</td>
+<td style="text-align:left;">
+some college
+</td>
+<td style="text-align:left;">
+standard
+</td>
+<td style="text-align:left;">
+completed
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+group B
+</td>
+<td style="text-align:left;">
+some college
+</td>
+<td style="text-align:left;">
+free/reduced
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+group D
+</td>
+<td style="text-align:left;">
+high school
+</td>
+<td style="text-align:left;">
+free/reduced
+</td>
+<td style="text-align:left;">
+completed
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+group B
+</td>
+<td style="text-align:left;">
+high school
+</td>
+<td style="text-align:left;">
+free/reduced
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Рассчитаем размер эффекта для гипотезы о том, что студенты, чьи родители получили магистерское образование, учатся лучше, чем те, чьи родители закончили колледж.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="расчет-размера-выборки.html#cb16-1"></a><span class="kw">library</span>(effsize)</span>
+<span id="cb16-2"><a href="расчет-размера-выборки.html#cb16-2"></a><span class="kw">library</span>(effectsize)</span>
+<span id="cb16-3"><a href="расчет-размера-выборки.html#cb16-3"></a>students_before <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-4"><a href="расчет-размера-выборки.html#cb16-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">parental level of education</span><span class="st">`</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;master&#39;s degree&quot;</span>, <span class="st">&quot;some college&quot;</span>)) -&gt;<span class="st"> </span>students_before2</span>
+<span id="cb16-5"><a href="расчет-размера-выборки.html#cb16-5"></a><span class="kw">t.test</span>(score <span class="op">~</span><span class="st"> `</span><span class="dt">parental level of education</span><span class="st">`</span>, <span class="dt">data =</span> students_before2)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  score by parental level of education
+## t = 2.5756, df = 91.327, p-value = 0.01161
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.173653 9.085084
+## sample estimates:
+## mean in group master&#39;s degree    mean in group some college 
+##                      73.57627                      68.44690</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="расчет-размера-выборки.html#cb18-1"></a><span class="kw">cohen.d</span>(score <span class="op">~</span><span class="st"> `</span><span class="dt">parental level of education</span><span class="st">`</span>, <span class="dt">data =</span> students_before2)</span></code></pre></div>
+<pre><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: 0.3743783 (small)
+## 95 percent confidence interval:
+##      lower      upper 
+## 0.08495367 0.66380288</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="расчет-размера-выборки.html#cb20-1"></a><span class="kw">cohens_d</span>(score <span class="op">~</span><span class="st"> `</span><span class="dt">parental level of education</span><span class="st">`</span>, <span class="dt">data =</span> students_before2)</span></code></pre></div>
+<pre><code>## Cohen&#39;s d |       95% CI
+## ------------------------
+## 0.37      | [0.09, 0.66]
+## 
+## - Estimated using pooled SD.</code></pre>
+<p>Или размер эффекта для гипотезы о том, что образование родителей и прохождение подготовительного курса как-то связано с успеваемостью студентов.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="расчет-размера-выборки.html#cb22-1"></a>lm_score &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> `</span><span class="dt">parental level of education</span><span class="st">`</span> <span class="op">+</span><span class="st"> `</span><span class="dt">test preparation course</span><span class="st">`</span>, <span class="dt">data =</span> students_before)</span>
+<span id="cb22-2"><a href="расчет-размера-выборки.html#cb22-2"></a><span class="kw">summary</span>(lm_score)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = score ~ `parental level of education` + `test preparation course`, 
+##     data = students_before)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -52.832  -8.880   0.541   9.690  33.224 
+## 
+## Coefficients:
+##                                                Estimate Std. Error t value
+## (Intercept)                                     74.3100     1.0639  69.850
+## `parental level of education`bachelor&#39;s degree   2.2364     1.5330   1.459
+## `parental level of education`high school        -5.8058     1.3209  -4.395
+## `parental level of education`master&#39;s degree     4.2467     1.9710   2.155
+## `parental level of education`some college       -0.8957     1.2717  -0.704
+## `parental level of education`some high school   -4.9440     1.3527  -3.655
+## `test preparation course`none                   -7.5344     0.8918  -8.449
+##                                                Pr(&gt;|t|)    
+## (Intercept)                                     &lt; 2e-16 ***
+## `parental level of education`bachelor&#39;s degree 0.144921    
+## `parental level of education`high school       1.22e-05 ***
+## `parental level of education`master&#39;s degree   0.031434 *  
+## `parental level of education`some college      0.481388    
+## `parental level of education`some high school  0.000271 ***
+## `test preparation course`none                   &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 13.46 on 993 degrees of freedom
+## Multiple R-squared:  0.1148, Adjusted R-squared:  0.1095 
+## F-statistic: 21.47 on 6 and 993 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="расчет-размера-выборки.html#cb24-1"></a><span class="kw">cohens_f</span>(lm_score, <span class="dt">partial =</span> <span class="ot">TRUE</span>, <span class="dt">ci =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## # Effect Size for ANOVA (Type I)
+## 
+## Parameter                   | Cohen&#39;s f (partial) |      95% CI
+## ---------------------------------------------------------------
+## parental level of education |                0.24 | [0.18, Inf]
+## test preparation course     |                0.27 | [0.21, Inf]
+## 
+## - One-sided CIs: upper bound fixed at [Inf].</code></pre>
 <p align="center">
 <img src="images/power_samplesize.jpg" />
 </p>
-<p>Зная статистическую мощность, уровень значимости и размер эффекта – размер выборки можно рассчитать в Gpower <a href="https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower" class="uri">https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower</a> или в R, например, с помощью пакета <code>pwr</code> <a href="https://cran.r-project.org/web/packages/pwr/pwr.pdf" class="uri">https://cran.r-project.org/web/packages/pwr/pwr.pdf</a></p>
+<p>Зная статистическую мощность, уровень значимости и размер эффекта – размер выборки можно рассчитать в Gpower <a href="https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower" class="uri">https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower</a> или в R, например, с помощью пакета <code>pwr</code> <a href="https://cran.r-project.org/web/packages/pwr/pwr.pdf" class="uri">https://cran.r-project.org/web/packages/pwr/pwr.pdf</a>. Рассчитаем вторым способом.</p>
+<p>Допустим, мы решили проверять гипотезу о том, что студенты, чьи родители получили магистерское образование, учатся лучше, чем те, чьи родители закончили колледж. Выбрали уровень</p>
 <p>Для того, чтобы детально поразбираться в нюансах размера эффекта и выборки, можно пройти курс Лакенса <a href="https://www.coursera.org/learn/statistical-inferences" class="uri">https://www.coursera.org/learn/statistical-inferences</a> (кажется, только с vpn)</p>
 </div>
             </section>
