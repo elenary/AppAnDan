@@ -59,7 +59,7 @@ studens_mat %>%
 kable(studens_mat[1:10,]) %>% scroll_box(width = "100%") #визуализирую табличку для этой книжки
 ```
 
-```{r, eval=TRUE, results = "asis"}
+```{r, eval=TRUE, message = FALSE, results = "asis"}
 studens_por <- read_csv("student-por.csv")
 studens_por %>% 
   rename_with(., ~ paste0(., "_por"), .cols = c(absences, paid, G1, G2, G3)) -> studens_por
@@ -358,7 +358,7 @@ Walc -- явно относится к порядковой шкале: може
 
 **Размер эффекта** -- это величина наблюдаемых различий. За степень различий отвечает не полученная статистика после примененного статистического критерия (например, t-значение, F-значение), и не p-значение, а отдельная метрика. Эта метрика расчитывается по формулам индивидуально для каждого статистического теста. Например, для t-test размер эффекта -- это $Cohen's d$ или его нормализованная версия $Hedges` g$. Исключение составляет только коэффициент корреляции $r$ -- он как раз будет являться и статистикой, и величиной эффекта. Для линейной регрессии с одинм предиктором размером эффекта может также являться $R^2$, а для множественной, когда много предикторов, лучше уже использовать метрику $Cohen’s f^2$ В психологических исследованиях размер эффекта редко бывает большим. И чем меньше ожидаемый размер эффекта, тем больше наблюдений нам надо собрать для возможности сделать точный вывод о наличи или отсутствии различий в генеральной совокупности.
 
-Есть хорошая визуализация размера эффекта дла t-test $Cohen's d$  https://rpsychologist.com/d3/cohend/
+Есть хорошая визуализация размера эффекта дла t-test *Cohen's d*  https://rpsychologist.com/d3/cohend/
 
 Размер эффекта обычно используется в двух случаях:
 
@@ -369,7 +369,7 @@ Walc -- явно относится к порядковой шкале: може
 
 Допустим, перед тестированием гипотезы о связи баллов и образования родители мы изучали похожее исследование
 
-```{r}
+```{r, message=FALSE}
 students_before <- read_csv('https://raw.githubusercontent.com/VladimirShitov/notebooks/master/datasets/StudentsPerformance.csv') %>% 
   mutate(score = round(rowMeans(select(., c(`math score`, `reading score`, `writing score`))),0))
 kable(students_before[1:10,]) %>% scroll_box(width = "100%") 
@@ -382,27 +382,40 @@ library(effectsize)
 students_before %>% 
   filter(`parental level of education` %in% c("master's degree", "some college")) -> students_before2
 t.test(score ~ `parental level of education`, data = students_before2)
-cohen.d(score ~ `parental level of education`, data = students_before2)
-cohens_d(score ~ `parental level of education`, data = students_before2)
+effsize::cohen.d(score ~ `parental level of education`, data = students_before2)
+effectsize::cohens_d(score ~ `parental level of education`, data = students_before2)
 ```
 Или размер эффекта для гипотезы о том, что образование родителей и прохождение подготовительного курса как-то связано с успеваемостью студентов.
 ```{r}
-
-
 lm_score <- lm(score ~ `parental level of education` + `test preparation course`, data = students_before)
 summary(lm_score)
-cohens_f(lm_score, partial = TRUE, ci = 0.95)
-
+effectsize::cohens_f(lm_score, partial = TRUE, ci = 0.95)
 ```
+
+Зная статистическую мощность, уровень значимости и размер эффекта -- размер выборки можно рассчитать в Gpower https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower или в R, например, с помощью пакета `pwr` https://cran.r-project.org/web/packages/pwr/pwr.pdf. Рассчитаем вторым способом.
+
+
+Допустим, мы решили проверять гипотезу о том, что студенты, чьи родители получили магистерское образование, учатся лучше, чем те, чьи родители закончили колледж. Выбрали уровень статистической значимости $\alpha = 0.05$, с которым будем сравнивать p-values, которые получим. Выбрали уровень статистической мощности $power = 0.8$ (то есть ошибка второго рода $\beta = 0.2$). Выбрали, что будем проверять эти гипотезу с помощью t-test. Из предыдущего похожего исследования узнали, что размер эффекта в аналогичном исследовании был равен Cohen's d = 0.37. И теперь можем оценить, сколько данных нам нужно набрать, чтобы если различие между такими студентами было в генеральной совокупности, мы смогли обнаружить его на наших данных. Эти 4 величины связаны между собой математически, поэтому зная 3 любых, мы можем вычислить четвертую. https://rpsychologist.com/d3/nhst/ 
+
 <p align="center">
 ![](images/power_samplesize.jpg){}
 </p>
 
-Зная статистическую мощность, уровень значимости и размер эффекта -- размер выборки можно рассчитать в Gpower https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower или в R, например, с помощью пакета `pwr` https://cran.r-project.org/web/packages/pwr/pwr.pdf. Рассчитаем вторым способом.
+```{r}
+library(pwr)
+pwr::pwr.t.test(d=0.37,power=0.8,sig.level=0.05,type="two.sample",alternative="greater")
+```
+Анлогично, расчет размера выборки для проверки гипотезы о том, что образование родителей и прохождение подготовительного курса как-то связано с успеваемостью студентов с помощью построения линейной модели.
+```{r, message=FALSE}
+library(WebPower)
+WebPower::wp.regression(n = NULL, p1 = 2, f2 = 0.24, alpha = 0.05, power = 0.8)
+```
 
-Допустим, мы решили проверять гипотезу о том, что студенты, чьи родители получили магистерское образование, учатся лучше, чем те, чьи родители закончили колледж. Выбрали уровень 
+У пакета есть веб-приложение https://webpower.psychstat.org/models/reg01/
 
-Для того, чтобы детально поразбираться в нюансах размера эффекта и выборки, можно пройти курс Лакенса https://www.coursera.org/learn/statistical-inferences (кажется, только с vpn)
+
+
+Для того, чтобы детально поразбираться в нюансах размера эффекта и выборки, можно пройти курс Лакенса https://www.coursera.org/learn/statistical-inferences (кажется, теперь только с vpn)
 
 
 # Выбор среды анализа данных
@@ -435,8 +448,8 @@ students %>%
 
 ```{r}
 students %>% 
-  mutate(G_mat = rowMeans(select(., c(G1_mat, G2_mat, G3_mat))),
-         G_por = rowMeans(select(., c(G1_por, G2_por, G3_por)))) -> students
+  mutate(G_mat = rowMeans(dplyr::select(., c(G1_mat, G2_mat, G3_mat))),
+         G_por = rowMeans(dplyr::select(., c(G1_por, G2_por, G3_por)))) -> students
 kable(students[1:10,]) %>% scroll_box(width = "100%") #здесь я посчитала средний балл по трем баллам по математике G_mat и португальскому G_por 
 ```
 
@@ -573,7 +586,7 @@ students %>%
 Допустим, мы хотим посмотреть корреляцию всех количественных переменных соо всеми (никогда так не делайте -- вы обязательно найдетете какую-нибудь связь, возможно из-за статистической ошибки и несмотря на то, что не искали эту связь, и соблазн выдать ее за свою гипотезу будет слишком велик).
 ```{r}
 students %>% 
-  select(traveltime, studytime, famrel, freetime, Dalc, Walc, health, absences_mat, absences_por, G_mat, G_por) %>% 
+  dplyr::select(traveltime, studytime, famrel, freetime, Dalc, Walc, health, absences_mat, absences_por, G_mat, G_por) %>% 
   as.matrix() -> students_numeric_matrix
 ```
 
@@ -710,11 +723,12 @@ students %>%
 * **гипотетико-дедуктивный**, когда мы сначала анализируем общую теорию, выдвигаем конкретные гипотезы и проверяем их.
 
 <p align="center">
-![](images/hyp-ded.png){width=70%}
-
+![](images/hyp-ded.png){width=40%}
+</p>
 * **индуктивный**, когда мы замечаем конкретные частные наблюдения, и на их основании строим теорию, которая объясняла бы эти наблюдения.
-![](images/ind.png){width=70%}
-
+<p align="center">
+![](images/ind.png){width=40%}
+</p>
 Оба подхода жизнеспособны и зависят от задачи. Мы чаще работает в гипотетико-дедуктивном подходе, потому что большинство наших исследований -- **конфирматорные**, когда мы выдвигаем гипотезу, и нам нужно ее проверить. Но когда у нас нект конкретной гипотезы, мы хотим просто поисследовать область и провести **эксплораторное исследование** -- то речь будет идти об индуктивном подходе.
 
 Производство научного знания выглядит так

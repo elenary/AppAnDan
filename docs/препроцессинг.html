@@ -23,7 +23,7 @@
 <meta name="author" content="Елена Рыбина" />
 
 
-<meta name="date" content="2022-07-06" />
+<meta name="date" content="2022-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,8 +217,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-3"><a href="препроцессинг.html#cb27-3"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb27-4"><a href="препроцессинг.html#cb27-4"></a><span class="st">  </span><span class="kw">drop_na</span>() -&gt;<span class="st"> </span>students <span class="co">#пропускаю строки с NA и перезаписываю результат в датасет</span></span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="препроцессинг.html#cb28-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb28-2"><a href="препроцессинг.html#cb28-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">G_mat =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., <span class="kw">c</span>(G1_mat, G2_mat, G3_mat))),</span>
-<span id="cb28-3"><a href="препроцессинг.html#cb28-3"></a>         <span class="dt">G_por =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., <span class="kw">c</span>(G1_por, G2_por, G3_por)))) -&gt;<span class="st"> </span>students</span>
+<span id="cb28-2"><a href="препроцессинг.html#cb28-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">G_mat =</span> <span class="kw">rowMeans</span>(dplyr<span class="op">::</span><span class="kw">select</span>(., <span class="kw">c</span>(G1_mat, G2_mat, G3_mat))),</span>
+<span id="cb28-3"><a href="препроцессинг.html#cb28-3"></a>         <span class="dt">G_por =</span> <span class="kw">rowMeans</span>(dplyr<span class="op">::</span><span class="kw">select</span>(., <span class="kw">c</span>(G1_por, G2_por, G3_por)))) -&gt;<span class="st"> </span>students</span>
 <span id="cb28-4"><a href="препроцессинг.html#cb28-4"></a><span class="kw">kable</span>(students[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>) <span class="co">#здесь я посчитала средний балл по трем баллам по математике G_mat и португальскому G_por </span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table>

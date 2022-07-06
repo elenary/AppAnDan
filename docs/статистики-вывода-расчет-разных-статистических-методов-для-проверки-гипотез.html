@@ -23,7 +23,7 @@
 <meta name="author" content="Елена Рыбина" />
 
 
-<meta name="date" content="2022-07-06" />
+<meta name="date" content="2022-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb76-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb76-5"></a><span class="st">  </span><span class="kw">scale_color_viridis</span>() <span class="op">+</span></span>
 <span id="cb76-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb76-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="images/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-38-1.png" width="672" /></p>
 <p>Другой варивант этого же графика с помощью пакета <code>ggstatsplot</code> и функции из него <code>ggscatterstats</code></p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb78-1"></a><span class="kw">library</span>(ggstatsplot)</span></code></pre></div>
 <pre><code>## You can cite this package as:
@@ -282,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   +.gg   ggplot2</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="images/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-39-1.png" width="672" /></p>
 </div>
 <div id="проверка-гипотезы-3_b-anova" class="section level2 hasAnchor">
 <h2><span class="header-section-number">12.3</span> Проверка гипотезы 3_b: ANOVA<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#проверка-гипотезы-3_b-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1777,7 +1777,7 @@ less
 <span id="cb90-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb90-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ansences_mat_groups)) <span class="op">+</span></span>
 <span id="cb90-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb90-4"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
 <span id="cb90-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb90-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-41-1.png" width="672" />
+<p><img src="images/unnamed-chunk-43-1.png" width="672" />
 Другой вариант того же графика – вайолин плот.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb91-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb91-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb91-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>ansences_mat_groups, <span class="dt">y =</span> G_mat)) <span class="op">+</span></span>
@@ -1785,7 +1785,7 @@ less
 <span id="cb91-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb91-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ansences_mat_groups), <span class="dt">width=</span>.<span class="dv">1</span>) <span class="op">+</span></span>
 <span id="cb91-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb91-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
 <span id="cb91-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb91-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 <div id="проверка-гипотезы-1-тест-манна-уитни" class="section level2 hasAnchor">
 <h2><span class="header-section-number">12.5</span> Проверка гипотезы 1: тест Манна-Уитни<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#проверка-гипотезы-1-тест-манна-уитни" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -3342,13 +3342,13 @@ yes
 <span id="cb97-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb97-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> adult)) <span class="op">+</span></span>
 <span id="cb97-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb97-4"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
 <span id="cb97-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb97-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-48-1.png" width="672" /></p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb98-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb98-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb98-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="st">`</span><span class="dt">15th</span><span class="st">`</span>, <span class="dt">y =</span> Walc)) <span class="op">+</span></span>
 <span id="cb98-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb98-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">15th</span><span class="st">`</span>)) <span class="op">+</span></span>
 <span id="cb98-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb98-4"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
 <span id="cb98-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb98-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-49-1.png" width="672" /></p>
 </div>
 <div id="проверка-гипотезы-2-корреляционный-тест" class="section level2 hasAnchor">
 <h2><span class="header-section-number">12.7</span> Проверка гипотезы 2: корреляционный тест<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#проверка-гипотезы-2-корреляционный-тест" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -3381,7 +3381,7 @@ yes
 <span id="cb102-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb102-4"></a><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(famrel), <span class="dt">fill =</span> Walc)) <span class="op">+</span></span>
 <span id="cb102-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb102-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
 <span id="cb102-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb102-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
-<p><img src="images/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-51-1.png" width="672" /></p>
 <p>Другой вариант – хитмеп, как в коррелограмме, где размеры фиксированные, а за частоту совпадений отвечает цвет.</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb103-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(famrel), <span class="dt">y =</span> <span class="kw">as.factor</span>(Walc))) <span class="op">+</span><span class="st"> </span></span>
@@ -3390,16 +3390,11 @@ yes
 <span id="cb103-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
 <span id="cb103-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(), </span>
 <span id="cb103-7"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb103-7"></a>        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="images/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-52-1.png" width="672" /></p>
 </div>
 <div id="проверка-гипотезы-2-порядковая-логистическая-регрессия" class="section level2 hasAnchor">
 <h2><span class="header-section-number">12.9</span> Проверка гипотезы 2: порядковая логистическая регрессия<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#проверка-гипотезы-2-порядковая-логистическая-регрессия" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Попробуем порядковую логистическую регрессию</p>
-<pre><code>## 
-## Attaching package: &#39;MASS&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     select</code></pre>
 <pre><code>## Call:
 ## polr(formula = as.factor(Walc) ~ as.factor(famrel), data = students, 
 ##     Hess = TRUE)
@@ -3421,10 +3416,10 @@ yes
 ## Residual Deviance: 920.8895 
 ## AIC: 936.8895</code></pre>
 <p>И добавим p-value</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb107-1"></a>ctable &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(famrel_ordered_model))</span>
-<span id="cb107-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb107-2"></a>p &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(ctable[, <span class="st">&quot;t value&quot;</span>]), <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb107-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb107-3"></a>ctable &lt;-<span class="st"> </span><span class="kw">cbind</span>(ctable, <span class="st">&quot;p value&quot;</span> =<span class="st"> </span>p)</span>
-<span id="cb107-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb107-4"></a>ctable</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb105-1"></a>ctable &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(famrel_ordered_model))</span>
+<span id="cb105-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb105-2"></a>p &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(ctable[, <span class="st">&quot;t value&quot;</span>]), <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb105-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb105-3"></a>ctable &lt;-<span class="st"> </span><span class="kw">cbind</span>(ctable, <span class="st">&quot;p value&quot;</span> =<span class="st"> </span>p)</span>
+<span id="cb105-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb105-4"></a>ctable</span></code></pre></div>
 <pre><code>##                         Value Std. Error    t value    p value
 ## as.factor(famrel)2 -0.6749367  0.9380228 -0.7195313 0.47181365
 ## as.factor(famrel)3 -0.3940742  0.8103672 -0.4862908 0.62676098
@@ -3440,7 +3435,7 @@ yes
 <p>Хи-квадратом мы обычно проверяем коррялцию двух категориальных переменных между собой: порядковых, если у нас не шкала Лайерта или мало возможных значений, и метод корреляции Спирмена не подходит, или номинальных, где корреляцию Спирмена провести уже невозможно.</p>
 <p>Например, давайте проверим гипотезу о том, что наличие или отсутствие интернета в квартире связано с наличием или отсутствием романтических отношений. Предположим, что португальские школьники, у кого дома есть интернет, реже вступают в романтические отношения, по сравнению с теми, у кого интернета нет. Для этого будем использовать метод хи-квадрат. НП – наличие или отсутствие интернета (переменная internet), ЗП – наличие или отсутствие романтических отношений (romantic).</p>
 <p>Проведем тест:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-1"></a><span class="kw">chisq.test</span>(students<span class="op">$</span>internet, students<span class="op">$</span>romantic, <span class="dt">correct=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb107-1"></a><span class="kw">chisq.test</span>(students<span class="op">$</span>internet, students<span class="op">$</span>romantic, <span class="dt">correct=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -3452,25 +3447,25 @@ yes
 <h2><span class="header-section-number">12.11</span> Визуализации для хи-квадрат<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#визуализации-для-хи-квадрат" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Хи-квадрат чаще всего визуализируют уже знакомым по корреляции Спирмена мозаичным графиком.
 Указываем НП как x=product(НП), и ЗП как fill = ЗП.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb111-1"></a><span class="kw">library</span>(ggmosaic)</span>
-<span id="cb111-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb111-2"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb111-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb111-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>()) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb111-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb111-4"></a><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(internet), <span class="dt">fill =</span> romantic)) <span class="op">+</span></span>
-<span id="cb111-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb111-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
-<span id="cb111-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb111-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
-<p><img src="images/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-1"></a><span class="kw">library</span>(ggmosaic)</span>
+<span id="cb109-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-2"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>()) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb109-4"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-4"></a><span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(internet), <span class="dt">fill =</span> romantic)) <span class="op">+</span></span>
+<span id="cb109-5"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb109-6"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb109-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
+<p><img src="images/unnamed-chunk-58-1.png" width="672" /></p>
 </div>
 <div id="пример-для-мультиномиальной-логистической-регрессии" class="section level2 hasAnchor">
 <h2><span class="header-section-number">12.12</span> Пример для мультиномиальной логистической регрессии<a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#пример-для-мультиномиальной-логистической-регрессии" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Предположим, у нас есть предположение, что категорию пропусков занятий (“мало”, “средне”, “много”) можно предсказать по наличию дома интернета, работе матери и наличию или отсутствию романтических отношений (<em>! это НЕ СОДЕРЖАТЕЛЬНАЯ ГИПОТЕЗА. Если юы мы задумали такое исследование, нам было бы сложно объяснить, почему мы вообще решили такое исследоваить. Этот тест здесь просто для примера мультином лог регрессии</em>). Переменная <code>ansences_mat_groups</code> категориальная, принимает 3 возможных значения: “less”, “middle”, “more”, и мы будем строить для нее мультиноомиальную логистическую регрессию.</p>
 <p>Строить модель будем с помощью пакета <code>nnet</code> фунции <code>multinom</code>.</p>
 <p>Сначала нам нужно выбрать референсной значение – противоположное тому, которое мы хотим предсказать. Здесь у нас гипотеза связана с тем, что наличие интернета, романтических отношений и образования матери, связанное с отсутствие дома, может быть связано с большим количеством пропусков. Поэтому за референсное значение берем то, где меньше всего пропусков.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb112-1"></a><span class="kw">library</span>(nnet)</span>
-<span id="cb112-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb112-2"></a>students<span class="op">$</span>ansences_mat_groups2 &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">as.factor</span>(students<span class="op">$</span>ansences_mat_groups), <span class="dt">ref =</span> <span class="dv">3</span>)</span>
-<span id="cb112-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb112-3"></a><span class="kw">levels</span>(students<span class="op">$</span>ansences_mat_groups2)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-1"></a><span class="kw">library</span>(nnet)</span>
+<span id="cb110-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-2"></a>students<span class="op">$</span>ansences_mat_groups2 &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">as.factor</span>(students<span class="op">$</span>ansences_mat_groups), <span class="dt">ref =</span> <span class="dv">3</span>)</span>
+<span id="cb110-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb110-3"></a><span class="kw">levels</span>(students<span class="op">$</span>ansences_mat_groups2)</span></code></pre></div>
 <pre><code>## [1] &quot;more&quot;   &quot;less&quot;   &quot;middle&quot;</code></pre>
 <p>Строим саму модель:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb114-1"></a>model_ansences_mat_groups &lt;-<span class="st"> </span><span class="kw">multinom</span>(ansences_mat_groups <span class="op">~</span><span class="st"> </span>internet <span class="op">+</span><span class="st"> </span>Mjob <span class="op">+</span><span class="st"> </span>romantic, <span class="dt">data =</span> students)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb112-1"></a>model_ansences_mat_groups &lt;-<span class="st"> </span><span class="kw">multinom</span>(ansences_mat_groups <span class="op">~</span><span class="st"> </span>internet <span class="op">+</span><span class="st"> </span>Mjob <span class="op">+</span><span class="st"> </span>romantic, <span class="dt">data =</span> students)</span></code></pre></div>
 <pre><code>## # weights:  24 (14 variable)
 ## initial  value 351.555932 
 ## iter  10 value 256.138935
@@ -3479,7 +3474,7 @@ yes
 ## iter  20 value 255.444149
 ## final  value 255.444149 
 ## converged</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb116-1"></a><span class="kw">summary</span>(model_ansences_mat_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb114-1"></a><span class="kw">summary</span>(model_ansences_mat_groups)</span></code></pre></div>
 <pre><code>## Call:
 ## multinom(formula = ansences_mat_groups ~ internet + Mjob + romantic, 
 ##     data = students)
@@ -3503,9 +3498,9 @@ yes
 ## Residual Deviance: 510.8883 
 ## AIC: 538.8883</code></pre>
 <p>Обратите внимание, что в аутпуте модели нет p-value – чтобы их получить, нужно выполнить дополнительнве действия:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb118-1"></a>z &lt;-<span class="st"> </span><span class="kw">summary</span>(model_ansences_mat_groups)<span class="op">$</span>coefficients<span class="op">/</span><span class="kw">summary</span>(model_ansences_mat_groups)<span class="op">$</span>standard.errors</span>
-<span id="cb118-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb118-2"></a>p &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(z), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb118-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb118-3"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb116-1"></a>z &lt;-<span class="st"> </span><span class="kw">summary</span>(model_ansences_mat_groups)<span class="op">$</span>coefficients<span class="op">/</span><span class="kw">summary</span>(model_ansences_mat_groups)<span class="op">$</span>standard.errors</span>
+<span id="cb116-2"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb116-2"></a>p &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(z), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb116-3"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb116-3"></a>p</span></code></pre></div>
 <pre><code>##         (Intercept) internetyes Mjobhealth Mjobother Mjobservices Mjobteacher
 ## middle 0.0069278582   0.5767740  0.8934965 0.8348532    0.3354422    0.161750
 ## more   0.0009668487   0.2784615  0.6023121 0.8961470    0.2634997    0.888276
@@ -3514,7 +3509,7 @@ yes
 ## more    0.12978499</code></pre>
 <p>Это наши p-value.</p>
 <p>Понятнее всего результаты логистической модели визуализировать в виде кривых вероятностей в пользу одного или друого варианта ЗП. Эти вероятности мы получаем как коэффициенты модели:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb120-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(model_ansences_mat_groups)) <span class="co">#вытащим коэффициенты из модели (они отвечают за вероятности)</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="статистики-вывода-расчет-разных-статистических-методов-для-проверки-гипотез.html#cb118-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(model_ansences_mat_groups)) <span class="co">#вытащим коэффициенты из модели (они отвечают за вероятности)</span></span></code></pre></div>
 <pre><code>##        (Intercept) internetyes Mjobhealth Mjobother Mjobservices Mjobteacher
 ## middle  0.32298602    0.810501   1.079149  1.092459     1.559918    1.952203
 ## more    0.02165984    3.182386   0.514640  1.116471     2.558935    1.145845

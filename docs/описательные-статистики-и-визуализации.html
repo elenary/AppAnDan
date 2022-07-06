@@ -23,7 +23,7 @@
 <meta name="author" content="Елена Рыбина" />
 
 
-<meta name="date" content="2022-07-06" />
+<meta name="date" content="2022-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -219,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table style='width: auto;'
         class='table table-condensed'>
 <caption>
-<span id="tab:unnamed-chunk-11">Table 10.1: </span>Data summary
+<span id="tab:unnamed-chunk-13">Table 10.1: </span>Data summary
 </caption>
 <thead>
 <tr>
@@ -374,7 +374,7 @@ data
 <table style='width: auto;'
         class='table table-condensed'>
 <caption>
-<span id="tab:unnamed-chunk-11">Table 10.1: </span>Data summary
+<span id="tab:unnamed-chunk-13">Table 10.1: </span>Data summary
 </caption>
 <thead>
 <tr>
@@ -1823,36 +1823,36 @@ G_por
 <p><strong>Гистограмма</strong></p>
 <p>Если переменная количественная и дискретная или строковая – гистограмму (частота встречаемости отдельных значений).</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="описательные-статистики-и-визуализации.html#cb37-1"></a><span class="kw">hist</span>(students<span class="op">$</span>Walc)</span></code></pre></div>
-<p><img src="images/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-16-1.png" width="672" /></p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="описательные-статистики-и-визуализации.html#cb38-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb38-2"><a href="описательные-статистики-и-визуализации.html#cb38-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Walc)) <span class="op">+</span></span>
 <span id="cb38-3"><a href="описательные-статистики-и-визуализации.html#cb38-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb38-4"><a href="описательные-статистики-и-визуализации.html#cb38-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Другой вариант визуализации гистограммы – с помощью барплота.</p>
 <p><strong>Барплоты</strong></p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="описательные-статистики-и-визуализации.html#cb39-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb39-2"><a href="описательные-статистики-и-визуализации.html#cb39-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Walc)) <span class="op">+</span></span>
 <span id="cb39-3"><a href="описательные-статистики-и-визуализации.html#cb39-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.factor</span>(Walc)), <span class="dt">stat =</span> <span class="st">&#39;count&#39;</span>) <span class="op">+</span></span>
 <span id="cb39-4"><a href="описательные-статистики-и-визуализации.html#cb39-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-16-1.png" width="672" />
+<p><img src="images/unnamed-chunk-18-1.png" width="672" />
 Сейчас мы нарисовали точно такую же диаграмму, но с помощью атрибута <code>geom_bar</code> вместо <code>geom_histogram</code> функции <code>ggplot</code>. Гистограммного вида мы добились с помощью значения <code>count</code> атрибута <code>stat</code>. Этот атрибут означает, что вместо барплота, который строится по двум переменным <code>x</code> и <code>y</code>, мы будем строить график количества значений (гистограмму) для одной переменной <code>x</code>. Другой популярный вариант значения атрибута <code>stat</code> - значение <code>identity</code>, буквально означает “строим барплот как есть, по двум переменным”:</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="описательные-статистики-и-визуализации.html#cb40-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb40-2"><a href="описательные-статистики-и-визуализации.html#cb40-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.factor</span>(age), <span class="dt">y =</span> Walc)) <span class="op">+</span></span>
 <span id="cb40-3"><a href="описательные-статистики-и-визуализации.html#cb40-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.factor</span>(age), <span class="dt">y =</span> <span class="kw">as.factor</span>(Walc), <span class="dt">fill =</span> <span class="kw">as.factor</span>(Walc)), <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span></span>
 <span id="cb40-4"><a href="описательные-статистики-и-визуализации.html#cb40-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-19-1.png" width="672" /></p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="описательные-статистики-и-визуализации.html#cb41-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb41-2"><a href="описательные-статистики-и-визуализации.html#cb41-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y =</span> Walc)) <span class="op">+</span></span>
 <span id="cb41-3"><a href="описательные-статистики-и-визуализации.html#cb41-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>age, <span class="dt">y =</span> Walc), <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span></span>
 <span id="cb41-4"><a href="описательные-статистики-и-визуализации.html#cb41-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Здесь я еще сделала преобразование <code>as.factor</code> для переменной <code>age</code>.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="описательные-статистики-и-визуализации.html#cb42-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb42-2"><a href="описательные-статистики-и-визуализации.html#cb42-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(age), <span class="dt">y =</span> <span class="kw">as.factor</span>(Walc))) <span class="op">+</span></span>
 <span id="cb42-3"><a href="описательные-статистики-и-визуализации.html#cb42-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.factor</span>(Walc)), <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span></span>
 <span id="cb42-4"><a href="описательные-статистики-и-визуализации.html#cb42-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-21-1.png" width="672" /></p>
 <p><strong>График плотности вероятности</strong></p>
 <p>Если переменная количественная, и данные непрерывны – график плотности (вероятности).
 В нашем датасете на количественную непрерывную переменную больше всего похожи пропуски занятий</p>
@@ -1860,17 +1860,17 @@ G_por
 <span id="cb43-2"><a href="описательные-статистики-и-визуализации.html#cb43-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>absences_por)) <span class="op">+</span></span>
 <span id="cb43-3"><a href="описательные-статистики-и-визуализации.html#cb43-3"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
 <span id="cb43-4"><a href="описательные-статистики-и-визуализации.html#cb43-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-22-1.png" width="672" /></p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="описательные-статистики-и-визуализации.html#cb44-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb44-2"><a href="описательные-статистики-и-визуализации.html#cb44-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>absences_mat)) <span class="op">+</span></span>
 <span id="cb44-3"><a href="описательные-статистики-и-визуализации.html#cb44-3"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
 <span id="cb44-4"><a href="описательные-статистики-и-визуализации.html#cb44-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-23-1.png" width="672" /></p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="описательные-статистики-и-визуализации.html#cb45-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb45-2"><a href="описательные-статистики-и-визуализации.html#cb45-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>G_por)) <span class="op">+</span></span>
 <span id="cb45-3"><a href="описательные-статистики-и-визуализации.html#cb45-3"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
 <span id="cb45-4"><a href="описательные-статистики-и-визуализации.html#cb45-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="визуализации-статистического-вывода-которые-тоже-помогают-понять-данные" class="section level2 hasAnchor">
 <h2><span class="header-section-number">10.3</span> Визуализации статистического вывода, которые тоже помогают понять данные<a href="описательные-статистики-и-визуализации.html#визуализации-статистического-вывода-которые-тоже-помогают-понять-данные" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1882,11 +1882,11 @@ G_por
 <span id="cb46-2"><a href="описательные-статистики-и-визуализации.html#cb46-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> absences_mat, <span class="dt">y =</span> G_mat)) <span class="op">+</span></span>
 <span id="cb46-3"><a href="описательные-статистики-и-визуализации.html#cb46-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> absences_mat)) <span class="op">+</span></span>
 <span id="cb46-4"><a href="описательные-статистики-и-визуализации.html#cb46-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-25-1.png" width="672" /></p>
 <p><strong>Коррелограмма</strong></p>
 <p>Допустим, мы хотим посмотреть корреляцию всех количественных переменных соо всеми (никогда так не делайте – вы обязательно найдетете какую-нибудь связь, возможно из-за статистической ошибки и несмотря на то, что не искали эту связь, и соблазн выдать ее за свою гипотезу будет слишком велик).</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="описательные-статистики-и-визуализации.html#cb47-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb47-2"><a href="описательные-статистики-и-визуализации.html#cb47-2"></a><span class="st">  </span><span class="kw">select</span>(traveltime, studytime, famrel, freetime, Dalc, Walc, health, absences_mat, absences_por, G_mat, G_por) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb47-2"><a href="описательные-статистики-и-визуализации.html#cb47-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(traveltime, studytime, famrel, freetime, Dalc, Walc, health, absences_mat, absences_por, G_mat, G_por) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb47-3"><a href="описательные-статистики-и-визуализации.html#cb47-3"></a><span class="st">  </span><span class="kw">as.matrix</span>() -&gt;<span class="st"> </span>students_numeric_matrix</span></code></pre></div>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="описательные-статистики-и-визуализации.html#cb48-1"></a>students_numeric_matrix <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb48-2"><a href="описательные-статистики-и-визуализации.html#cb48-2"></a><span class="st">  </span><span class="kw">cor</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -1987,23 +1987,23 @@ G_por
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="описательные-статистики-и-визуализации.html#cb59-1"></a><span class="kw">library</span>(corrplot)</span></code></pre></div>
 <pre><code>## corrplot 0.90 loaded</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="описательные-статистики-и-визуализации.html#cb61-1"></a><span class="kw">corrplot</span>(<span class="kw">cor</span>(students_numeric_matrix), <span class="dt">method=</span><span class="st">&quot;circle&quot;</span>)</span></code></pre></div>
-<p><img src="images/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-29-1.png" width="672" /></p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="описательные-статистики-и-визуализации.html#cb62-1"></a><span class="co"># corrplot(rcorr(students_numeric_matrix)$r, p.mat = rcorr(students_numeric_matrix)$P, sig.level = 0.05, insig = &quot;blank&quot;)</span></span></code></pre></div>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="описательные-статистики-и-визуализации.html#cb63-1"></a><span class="kw">heatmap</span>(<span class="dt">x =</span> <span class="kw">cor</span>(students_numeric_matrix))</span></code></pre></div>
-<p><img src="images/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-30-1.png" width="672" /></p>
 <p><strong>Боксплот и вайолин плот</strong></p>
 <p>Если нам интересно посмотреть значения <strong>в группах</strong>, можно построить боксплот (тот самый ящик с усами)</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="описательные-статистики-и-визуализации.html#cb64-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb64-2"><a href="описательные-статистики-и-визуализации.html#cb64-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Walc, <span class="dt">y =</span> age)) <span class="op">+</span></span>
 <span id="cb64-3"><a href="описательные-статистики-и-визуализации.html#cb64-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.factor</span>(Walc))) <span class="op">+</span></span>
 <span id="cb64-4"><a href="описательные-статистики-и-визуализации.html#cb64-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-31-1.png" width="672" /></p>
 <p>Или даже лучше и информативнее – вайолин плот (повернутое на бок распределение плотности вероятности, зачастую вместе с ящиком с усами.)</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="описательные-статистики-и-визуализации.html#cb65-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb65-2"><a href="описательные-статистики-и-визуализации.html#cb65-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Walc, <span class="dt">y =</span> age)) <span class="op">+</span></span>
 <span id="cb65-3"><a href="описательные-статистики-и-визуализации.html#cb65-3"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.factor</span>(Walc))) <span class="op">+</span></span>
 <span id="cb65-4"><a href="описательные-статистики-и-визуализации.html#cb65-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="images/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-32-1.png" width="672" /></p>
 <p><strong>Визуализация линейной регрессии</strong></p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="описательные-статистики-и-визуализации.html#cb66-1"></a>students <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb66-2"><a href="описательные-статистики-и-визуализации.html#cb66-2"></a><span class="st">  </span><span class="co"># slice(absences_mat&lt;40) %&gt;% </span></span>
@@ -2012,7 +2012,7 @@ G_por
 <span id="cb66-5"><a href="описательные-статистики-и-визуализации.html#cb66-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
 <span id="cb66-6"><a href="описательные-статистики-и-визуализации.html#cb66-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="images/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="images/unnamed-chunk-33-1.png" width="672" /></p>
 <p><strong>Визуализация логистической регрессии</strong></p>
 </div>
 <div id="визуализации-в-r-с-помощью-ggplot2" class="section level2 hasAnchor">
