@@ -52,7 +52,7 @@ knitr::opts_chunk$set(fig.path = "images/")
 В качестве примера возьмем датасет с kaggle <https://www.kaggle.com/datasets/uciml/student-alcohol-consumption>.
 Это -- данные из двух португальских школ (скорее колледжей) с подробной социо-демографической информации о студентах, включая ту, как они учатся по математике и португальскому языку и как часто пьют алкоголь. Этот датасет я взяла, так как он содержит переменные разного типа данных в разных шкалах (и шкала отношений, например, возраст, и порядковая шкала, например, рейтинггования образования мамы или папы или поддержка в семье).
 
-```{r, eval=TRUE}
+```{r, eval=TRUE, message = FALSE}
 studens_mat <- read_csv("student-mat.csv")
 studens_mat %>% 
   rename_with(., ~ paste0(., "_mat"), .cols = c(absences, paid, G1, G2, G3)) -> studens_mat #переименовываю колонки для упрощения понимания, какие относятся к математикие
@@ -413,7 +413,11 @@ WebPower::wp.regression(n = NULL, p1 = 2, f2 = 0.24, alpha = 0.05, power = 0.8)
 
 У пакета есть веб-приложение https://webpower.psychstat.org/models/reg01/
 
+Важный момент про статистическую мощность: именно она как раз показывает, с какой частотой будут выпадать $p$-values < $\alpha$ в случае верности альтернативной гипотезы (что различия или связь есть!)
 
+<p align="center">
+![](images/pvalue_dist_2.png)
+</p>
 
 Для того, чтобы детально поразбираться в нюансах размера эффекта и выборки, можно пройти курс Лакенса https://www.coursera.org/learn/statistical-inferences (кажется, теперь только с vpn)
 
@@ -710,9 +714,6 @@ students %>%
 ![](images/pvalue_dist.jpg)
 </p>
 
-<p align="center">
-![](images/pvalue_dist_2.jpg)
-</p>
 
 ## Questionable and good research practices
 
